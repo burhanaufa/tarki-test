@@ -15,8 +15,8 @@ class AddSlugCategoryViewIsHomeToCategories extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->text('slug')->after('parent');
-            $table->enum('category_view', ['0', '1'])->nullable()->comment('0=list, 1=page');
-            $table->enum('is_home', ['0', '1'])->default('0')->comment('0=not home, 1=is home');
+            $table->enum('category_view', ['0', '1'])->nullable()->comment('0=list, 1=page')->after('slug');
+            $table->enum('is_home', ['0', '1'])->default('0')->comment('0=not home, 1=is home')->after('category_view');
         });
     }
 
