@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+/*====== Admin Routes ======*/
+require __DIR__.'/admin.php';
