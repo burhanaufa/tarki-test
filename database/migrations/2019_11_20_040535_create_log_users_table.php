@@ -22,7 +22,7 @@ class CreateLogUsersTable extends Migration
             $table->bigInteger('region_id')->unsigned();
             $table->bigInteger('created_by');
             $table->timestamps();
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
 
             $table->foreign('region_id')->references('id')->on('regions');
         });

@@ -20,7 +20,7 @@ class CreateConfigurationsTable extends Migration
             $table->string('image', 50)->nullable();
             $table->bigInteger('created_by');
             $table->timestamps();
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

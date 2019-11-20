@@ -23,7 +23,7 @@ class CreateCommentsTable extends Migration
             $table->bigInteger('reply_id')->nullable();
             $table->bigInteger('created_by');
             $table->timestamps();
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
 
             $table->foreign('post_id')->references('id')->on('posts');
         });

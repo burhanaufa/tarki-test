@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->enum('status', ['0', '1'])->default(0);
             $table->bigInteger('created_by');
             $table->timestamps();
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

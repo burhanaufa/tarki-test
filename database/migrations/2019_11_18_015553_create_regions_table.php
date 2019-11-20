@@ -21,7 +21,7 @@ class CreateRegionsTable extends Migration
             $table->integer('parent')->nullable();
             $table->bigInteger('created_by');
             $table->timestamps();
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
