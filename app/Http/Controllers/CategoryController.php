@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Category;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +32,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('categories.create')->withCategories($categories);
     }
 
     /**
@@ -37,7 +45,52 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:50',
+            'image' => 'required',
+            'slug' => 'required',
+        ]);
+
+        $image = $request->file('image');
+
+        $category = new Category;
+        $category->category_name = $request->name;
+        $category->slug = $request->slug;
+        if ($request->has('parent')) {
+            $category->parent = $request->parent;
+        }
+
+        if ($request->has('category_view')) {
+            $category->category_view = $request->category_view;
+        }
+
+        if ($request->has('is_home')) {
+            $category->is_home = $request->is_home;
+        }
+
+        if ($request->has('is_menu')) {
+            $category->is_menu = $request->is_menu;
+        }
+
+        if ($request->has('is_enable')) {
+            $category->is_enable = $request->is_enable;
+        }
+
+        $category->created_by = Auth::user()->id;
+
+        $image_name = $request->name. '.' .$image->getClientOriginalExtension();
+
+        $category->image = $image_name;
+
+        if ($category->save()) {
+            $destination = 'images/categories';
+            $image->move($destination, $image_name);
+
+            return redirect('categories');
+        } else {
+            return redirect('categories/create')->with('error', 'Failed to save category');
+        }
+
     }
 
     /**
@@ -59,7 +112,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        $allCategories = Category::all();
+
+        return view('categories.edit')->withCategory($category)->withAllCategories($allCategories);
     }
 
     /**
@@ -71,7 +127,56 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image_name = $request->name. '.' .$image->getClientOriginalExtension();
+
+            $category->image = $image_name;
+        }
+
+        $category = Category::find($id);
+
+        if ($request->has('category_name')) {
+            $category->category_name = $request->name;
+        }
+
+        if ($request->has('slug')) {
+            $category->slug = $request->slug;
+        }
+
+        if ($request->has('parent')) {
+            $category->parent = $request->parent;
+        }
+
+        if ($request->has('category_view')) {
+            $category->category_view = $request->category_view;
+        }
+
+        if ($request->has('is_home')) {
+            $category->is_home = $request->is_home;
+        }
+
+        if ($request->has('is_menu')) {
+            $category->is_menu = $request->is_menu;
+        }
+
+        if ($request->has('is_enable')) {
+            $category->is_enable = $request->is_enable;
+        }
+
+        $category->created_by = Auth::user()->id;
+
+        if ($category->save()) {
+
+            if (!empty($image)) {
+                $destination = 'images/categories';
+                $image->move($destination, $image_name);
+            }
+
+            return redirect('categories');
+        } else {
+            return redirect('categories/create')->with('error', 'Failed to save category');
+        }
     }
 
     /**
@@ -82,6 +187,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+
+        return redirect('categories');
     }
 }
