@@ -22,7 +22,7 @@ class CreateCategoriesTable extends Migration
             $table->enum('is_enable', ['0', '1'])->default('0')->comment('0=disable, 1=enable');
             $table->bigInteger('created_by');
             $table->timestamps();
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
