@@ -47,11 +47,8 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|max:50',
-            'image' => 'required',
-            'slug' => 'required',
+            'slug' => 'required'
         ]);
-
-        $image = $request->file('image');
 
         $category = new Category;
         $category->category_name = $request->name;
@@ -78,14 +75,15 @@ class CategoryController extends Controller
 
         $category->created_by = Auth::user()->id;
 
-        $image_name = $request->name. '.' .$image->getClientOriginalExtension();
-
-        $category->image = $image_name;
-
-        if ($category->save()) {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image_name = $request->name. '.' .$image->getClientOriginalExtension();
+            $category->image = $image_name;
             $destination = 'images/categories';
             $image->move($destination, $image_name);
+        }
 
+        if ($category->save()) {
             return redirect('categories');
         } else {
             return redirect('categories/create')->with('error', 'Failed to save category');
