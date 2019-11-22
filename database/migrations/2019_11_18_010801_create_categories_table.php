@@ -16,7 +16,7 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('category_name', 50);
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->integer('parent')->nullable();
             $table->enum('is_menu', ['0', '1'])->nullable()->comment('0=not menu, 1=is_menu');
             $table->enum('is_enable', ['0', '1'])->default('0')->comment('0=disable, 1=enable');
