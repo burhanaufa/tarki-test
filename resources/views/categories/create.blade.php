@@ -26,12 +26,10 @@
                                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                             @endforeach
                         </select>
-                        <label for="slug">Slug</label>
-                        <input type="text" class="form-control" id="slug" name="slug">
                         <label for="category_view">Category View</label>
                         <select name="category_view" id="category_view" class="form-control">
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
+                            <option value="0">List</option>
+                            <option value="1">Page</option>
                         </select>
                         <label for="is_home">Is home</label>
                         <select name="is_home" id="is_home" class="form-control">
@@ -40,7 +38,6 @@
                         </select>
                         <label for="is_menu">Is menu</label>
                         <select name="is_menu" id="is_menu" class="form-control">
-                            <option value=""></option>
                             <option value="0">No</option>
                             <option value="1">Yes</option>
                         </select>

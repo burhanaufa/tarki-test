@@ -15,7 +15,7 @@
             @endif
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('categories.update', $category->id) }}">
+                    <form method="post" action="{{ route('categories.update', $category->id) }}" enctype="multipart/form-data">
                         @method('PATCH')
                         @csrf
                         <label for="name">Category</label>
@@ -29,12 +29,10 @@
                                 <option value="{{ $cat->id }}" {{ ($category->parent == $cat->id) ? 'selected' : '' }} >{{ $cat->category_name }}</option>
                             @endforeach
                         </select>
-                        <label for="slug">Slug</label>
-                        <input type="text" class="form-control" id="slug" name="slug" value="{{$category->slug}}">
                         <label for="category_view">Category View</label>
                         <select name="category_view" id="category_view" class="form-control">
-                            <option value="0" {{ $category->category_view == 0 ? 'selected' : '' }}>No</option>
-                            <option value="1" {{ $category->category_view == 1 ? 'selected' : '' }}>Yes</option>
+                            <option value="0" {{ $category->category_view == 0 ? 'selected' : '' }}>List</option>
+                            <option value="1" {{ $category->category_view == 1 ? 'selected' : '' }}>Page</option>
                         </select>
                         <label for="is_home">Is home</label>
                         <select name="is_home" id="is_home" class="form-control">
@@ -43,7 +41,6 @@
                         </select>
                         <label for="is_menu">Is menu</label>
                         <select name="is_menu" id="is_menu" class="form-control">
-                            <option value=""></option>
                             <option value="0" {{ $category->is_menu == 0 ? 'selected' : '' }}>No</option>
                             <option value="1" {{ $category->is_menu == 1 ? 'selected' : '' }}>Yes</option>
                         </select>
@@ -54,6 +51,9 @@
                         </select>
                         <label for="image">Upload Image</label>
                         <input type="file" name="image" id="image" class="form-control">
+                        @if (!empty($category->image))
+                            <img src="{{ env('APP_URL'). '/images/categories/' .$category->image }}" alt="">
+                        @endif
                         <button type="submit" class="btn btn-primary btn-block" style="margin:10px 0">Submit</button>
                     </form>
                 </div>

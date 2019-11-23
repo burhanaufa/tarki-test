@@ -32,7 +32,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview {{ Request::is('categories*') || Request::is('posts*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -42,13 +42,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('categories') }}" class="nav-link">
+                <a href="{{ url('categories') }}" class="nav-link {{ Request::is('categories*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
+                <a href="{{ url('posts') }}" class="nav-link {{ Request::is('posts*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Posts</p>
                 </a>
@@ -57,7 +57,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-edit"></i>
               <p>
                 Approval
                 <i class="right fas fa-angle-left"></i>
@@ -80,7 +80,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tree"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Management Users
                 <i class="fas fa-angle-left right"></i>
@@ -109,7 +109,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-cog"></i>
               <p>
                 Settings
                 <i class="fas fa-angle-left right"></i>

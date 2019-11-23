@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
 
@@ -46,13 +47,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:50',
-            'slug' => 'required'
+            'name' => 'required|max:50'
         ]);
 
         $category = new Category;
         $category->category_name = $request->name;
-        $category->slug = $request->slug;
+        $category->slug = Str::slug($request->name, '-');
         if ($request->has('parent')) {
             $category->parent = $request->parent;
         }
@@ -111,7 +111,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        $allCategories = Category::all();
+        $allCategories = Category::where('id', '!=', $category->id)->get();
 
         return view('categories.edit')->withCategory($category)->withAllCategories($allCategories);
     }
@@ -125,6 +125,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $category = Category::find($id);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name = $request->name. '.' .$image->getClientOriginalExtension();
@@ -132,14 +133,12 @@ class CategoryController extends Controller
             $category->image = $image_name;
         }
 
-        $category = Category::find($id);
-
-        if ($request->has('category_name')) {
+        if ($request->has('name')) {
             $category->category_name = $request->name;
         }
 
         if ($request->has('slug')) {
-            $category->slug = $request->slug;
+            $category->slug = Str::slug($request->name, '-');
         }
 
         if ($request->has('parent')) {
