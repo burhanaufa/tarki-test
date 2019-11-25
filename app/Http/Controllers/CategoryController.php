@@ -185,6 +185,12 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+
+        $myFile = public_path(). '/images/categories/' .$category->image;
+        if (is_file($myFile)) {
+            unlink($myFile);
+        }
+
         $category->delete();
 
         return redirect('categories');
