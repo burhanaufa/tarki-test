@@ -98,5 +98,13 @@
 <script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{asset('admin/dist/js/demo.js')}}"></script> --}}
+{{-- Tinymce Plugin --}}
+<script src="{{asset('admin/plugins/tinymce/tinymce.min.js')}}"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea'
+    });
+</script>
+@stack('scripts')
 </body>
 </html>
