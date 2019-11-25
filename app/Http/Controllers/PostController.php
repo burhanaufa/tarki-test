@@ -158,7 +158,7 @@ class PostController extends Controller
                 foreach($request->file('filename') as $file)
                 {
                     $ext = $file->getClientOriginalExtension();
-                    $name = $file->getClientOriginalName().'.'.$ext;
+                    $name = $file->getClientOriginalName();
                     $file->move(public_path().'/images/posts/', $name);
 
                     $new_file = new File;
@@ -199,6 +199,14 @@ class PostController extends Controller
     public function destroy($id)
     {
         $files = File::where('post_id', $id);
+
+        foreach ($files->get() as $file) {
+            $myFile = public_path(). '/images/posts/' .$file->file_name;
+            if (is_file($myFile)) {
+                unlink($myFile);
+            }
+        }
+
         $files->delete();
 
         $post = Post::find($id);
