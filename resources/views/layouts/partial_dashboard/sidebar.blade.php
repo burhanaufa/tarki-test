@@ -78,7 +78,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview {{ Request::is('users*') || Request::is('roles*') || Request::is('log-users*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -88,7 +88,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/UI/navbar.html" class="nav-link">
+                <a href="{{ url('users') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
