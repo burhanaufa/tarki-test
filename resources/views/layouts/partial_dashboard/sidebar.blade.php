@@ -94,7 +94,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/timeline.html" class="nav-link">
+                <a href="{{ url('roles') }}" class="nav-link {{ Request::is('roles*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Roles</p>
                 </a>
