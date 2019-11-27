@@ -51,7 +51,7 @@
                     <label for="drop" class="toggle">Menu</label>
                     <input type="checkbox" id="drop" />
                     <ul class="menu mr-auto">
-                        <?php $i = 0; ?>
+                        <?php $i = 0; $j=0; ?>
                         <li class="active"><a href="#">Home</a></li>
                         @if($top_menu_parent != null)
                         @foreach($top_menu_parent as $item)
@@ -63,9 +63,9 @@
                         @endforeach
                         @if($i == 1)
                         <li>
-                            <label for="drop-2" class="toggle">{{$item->category_name}}<span class="fa fa-angle-down" aria-hidden="true"></span> </label>
+                        <label for="drop-{{$j}}" class="toggle">{{$item->category_name}}<span class="fa fa-angle-down" aria-hidden="true"></span> </label>
                             <a href="#">{{$item->category_name}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-                            <input type="checkbox" id="drop-2" />
+                            <input type="checkbox" id="drop-{{$j}}" />
                             <ul>
                                 @foreach ($sub_menu_parent as $item2)
                                 @if($item->id == $item2->parent)
@@ -89,7 +89,7 @@
                                 @endif
                         </li>
                         @endif
-                        <?php $i = 0; ?>
+                        <?php $i = 0;$j++; ?>
                         @endforeach
                         @endif
                         <li class="log-vj ml-lg-5"><a href="contact.html"><span class="fa fa-user-circle-o" aria-hidden="true"></span> Join</a>
