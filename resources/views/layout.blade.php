@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}" type="text/css" media="all" />
     <!-- Style-CSS -->
     <!-- font-awesome-icons -->
-    <link href="{{ asset('assets/css/font-awesome.css" rel="stylesheet')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <!-- //font-awesome-icons -->
     <!-- /Fonts -->
     <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
@@ -44,35 +44,54 @@
                 <!-- nav -->
                 <nav class="lavi-wthree">
                     <div id="logo">
-                        <h1> <a class="navbar-brand" href="index.html">EduWily</a>
+                        <h1> <a class="navbar-brand" href="index.html">Tarakanita</a>
                         </h1>
                     </div>
 
                     <label for="drop" class="toggle">Menu</label>
                     <input type="checkbox" id="drop" />
                     <ul class="menu mr-auto">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <?php $i = 0; ?>
+                        <li class="active"><a href="#">Home</a></li>
+                        @foreach($top_menu_parent as $item)
+                        {{-- <li><a href="about.html"></a></li> --}}
+                        @foreach ($sub_menu_parent as $item2)
+                            @if($item->id == $item2->parent)
+                            <?php $i = 1; break;?>
+                            @endif
+                        @endforeach
+                        @if($i == 1)
                         <li>
-                            <!-- First Tier Drop Down -->
-                            <label for="drop-2" class="toggle">Drop Down<span class="fa fa-angle-down" aria-hidden="true"></span> </label>
-                            <a href="#">Drop Down <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                            <label for="drop-2" class="toggle">{{$item->category_name}}<span class="fa fa-angle-down" aria-hidden="true"></span> </label>
+                            <a href="#">{{$item->category_name}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                             <input type="checkbox" id="drop-2" />
                             <ul>
-                                <li><a href="#features">Features</a>
+                                @foreach ($sub_menu_parent as $item2)
+                                @if($item->id == $item2->parent)
+                                <li>
+                                    @if($item2->category_view == 0)
+                                    <a href="{{route('lists', $item2['slug'])}}">{{$item2->category_name}}</a>
+                                    @else
+                                    <a href="{{route('page', $item2['slug'])}}">{{$item2->category_name}}</a>
+                                    @endif
                                 </li>
-                                <li><a href="#services">Services</a>
-                                </li>
-                                <li><a href="#gallery">Gallery</a>
-                                </li>
-                                <li><a href="#test">Testimonials</a>
-                                </li>
-                                <li><a href="under.html">Blogs</a>
-                                </li>
+                                @endif
+                                @endforeach
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact</a>
+                        @else
+                        <li>
+                                @if($item->category_view == 0)
+                                <a href="{{route('lists', $item['slug'])}}">{{$item->category_name}}</a>
+                                @else
+                                <a href="{{route('page', $item['slug'])}}">{{$item->category_name}}</a>
+                                @endif
+                        </li>
+                        @endif
+                        <?php $i = 0; ?>
+                        @endforeach
                         <li class="log-vj ml-lg-5"><a href="contact.html"><span class="fa fa-user-circle-o" aria-hidden="true"></span> Join</a>
+
                     </ul>
                 </nav>
                 <!-- //nav -->
