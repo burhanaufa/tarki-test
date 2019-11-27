@@ -48,8 +48,6 @@
                         </h1>
                     </div>
 
-                    <label for="drop" class="toggle">Menu</label>
-                    <input type="checkbox" id="drop" />
                     <ul class="menu mr-auto">
                         <?php $i = 0; $j=0; ?>
                         <li class="active"><a href="#">Home</a></li>
@@ -63,9 +61,9 @@
                         @endforeach
                         @if($i == 1)
                         <li>
-                        <label for="drop-{{$j}}" class="toggle">{{$item->category_name}}<span class="fa fa-angle-down" aria-hidden="true"></span> </label>
+
                             <a href="#">{{$item->category_name}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-                            <input type="checkbox" id="drop-{{$j}}" />
+
                             <ul>
                                 @foreach ($sub_menu_parent as $item2)
                                 @if($item->id == $item2->parent)
