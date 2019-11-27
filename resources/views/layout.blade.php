@@ -90,7 +90,7 @@
                         <?php $i = 0;$j++; ?>
                         @endforeach
                         @endif
-                        <li class="log-vj ml-lg-5"><a href="contact.html"><span class="fa fa-user-circle-o" aria-hidden="true"></span> Join</a>
+                        <li class="log-vj ml-lg-5"><a href="{{route('alumni')}}"><span class="fa fa-user-circle-o" aria-hidden="true"></span> Portal Alumni</a>
 
                     </ul>
                 </nav>
