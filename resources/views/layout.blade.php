@@ -53,6 +53,7 @@
                     <ul class="menu mr-auto">
                         <?php $i = 0; ?>
                         <li class="active"><a href="#">Home</a></li>
+                        @if($top_menu_parent != null)
                         @foreach($top_menu_parent as $item)
                         {{-- <li><a href="about.html"></a></li> --}}
                         @foreach ($sub_menu_parent as $item2)
@@ -90,6 +91,7 @@
                         @endif
                         <?php $i = 0; ?>
                         @endforeach
+                        @endif
                         <li class="log-vj ml-lg-5"><a href="contact.html"><span class="fa fa-user-circle-o" aria-hidden="true"></span> Join</a>
 
                     </ul>
