@@ -375,15 +375,15 @@ li > a:only-child:after {
 }
 
 .nav_w3pvt {
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     z-index: 99;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     background: #fff;
     padding: 1em 1em;
-    margin-top: 2em;
+    margin-top: 0px;
 }
 
 /* banner-w3ls-info */
@@ -1368,9 +1368,9 @@ a.move-top span {
 
 @media(max-width:1080px) {
     .nav_w3pvt {
-        width: 96%;
+        width: 100%;
         padding: 1em 1em;
-        margin-top: 2em;
+        margin-top: 0px;
     }
 
     a.navbar-brand {
