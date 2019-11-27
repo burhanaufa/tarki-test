@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="{{asset('admin/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.css')}}">
+  {{-- Sweetalert2 --}}
+  <link rel="stylesheet" href="{{asset('admin/plugins/sweetalert2/sweetalert2.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -98,11 +100,39 @@
 <script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{asset('admin/dist/js/demo.js')}}"></script> --}}
+{{-- Sweetalert2 --}}
+<script src="{{asset('admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 {{-- Tinymce Plugin --}}
 <script src="{{asset('admin/plugins/tinymce/tinymce.min.js')}}"></script>
 <script>
     tinymce.init({
         selector: 'textarea'
+    });
+
+    $( ".btn-danger" ).click(function( event ) {
+        event.preventDefault();
+        var form = event.target.form;
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.value) {
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+
+                setTimeout(function() {
+                    form.submit();
+                }, 1500);
+            }
+        })
     });
 </script>
 @stack('scripts')

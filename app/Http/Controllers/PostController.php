@@ -70,7 +70,7 @@ class PostController extends Controller
             foreach($request->file('filename') as $file)
             {
                 $ext = $file->getClientOriginalExtension();
-                $name = $file->getClientOriginalName().'.'.$ext;
+                $name = substr($file->getClientOriginalName(), -50, 50);
                 $file->move(public_path().'/images/posts/', $name);
 
                 $new_file = new File;
@@ -158,7 +158,7 @@ class PostController extends Controller
                 foreach($request->file('filename') as $file)
                 {
                     $ext = $file->getClientOriginalExtension();
-                    $name = $file->getClientOriginalName();
+                    $name = substr($file->getClientOriginalName(), -50, 50);
                     $file->move(public_path().'/images/posts/', $name);
 
                     $new_file = new File;
