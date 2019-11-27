@@ -51,12 +51,6 @@
                                 <button class="btn btn-success" type="button"><i class="fa fa-plus"></i>Add</button>
                             </div>
                         </div>
-                        <label for="status">Status</label>
-                        <select name="status" id="status" class="form-control">
-                            <option value="0" {{ ($post->status == 0) ? 'selected' : '' }}>Draft</option>
-                            <option value="1" {{ ($post->status == 1) ? 'selected' : '' }}>Publish</option>
-                            <option value="2" {{ ($post->status == 2) ? 'selected' : '' }}>Unpublish</option>
-                        </select>
                         <button type="submit" class="btn btn-primary btn-block" style="margin:10px 0">Submit</button>
                     </form>
                 </div>

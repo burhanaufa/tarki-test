@@ -53,8 +53,7 @@ class PostController extends Controller
             'headline' => 'required|max:100',
             'description' => 'required',
             'filename' => 'required',
-            'filename.*' => 'mimes:doc,pdf,docx,zip,jpg,png,jpeg,gif,mp4,mkv,m4a,avi,mov',
-            'status' => 'required|integer',
+            'filename.*' => 'mimes:doc,pdf,docx,zip,jpg,png,jpeg,gif,mp4,mkv,m4a,avi,mov'
         ]);
 
         try {
@@ -63,7 +62,6 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
             $post->headline = $request->headline;
             $post->description = $request->description;
-            $post->status = $request->status;
             $post->created_by = Auth::user()->id;
             $post->save();
 
@@ -140,8 +138,7 @@ class PostController extends Controller
             'category_id' => 'required|integer|max:20',
             'headline' => 'required|max:100',
             'description' => 'required',
-            'filename.*' => 'mimes:doc,pdf,docx,zip,jpg,png,jpeg,gif,mp4,mkv,m4a,avi,mov',
-            'status' => 'required|integer',
+            'filename.*' => 'mimes:doc,pdf,docx,zip,jpg,png,jpeg,gif,mp4,mkv,m4a,avi,mov'
         ]);
 
         try {
@@ -150,7 +147,6 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
             $post->headline = $request->headline;
             $post->description = $request->description;
-            $post->status = $request->status;
             $post->created_by = Auth::user()->id;
             $post->save();
 
