@@ -14,7 +14,6 @@
                     <tr>
                         <th>#</th>
                         <th>Title</th>
-                        <th>Headline</th>
                         <th>Category</th>
                         <th>Status</th>
                         <th>Created At</th>
@@ -26,7 +25,6 @@
                         <tr>
                             <td>{{ $i }}</td>
                             <td>{{ $post->title }}</td>
-                            <td>{!! $post->headline !!}</td>
                             <td>{{ $post->category->category_name }}</td>
                             @if ($post->status == 0)
                                 <td>Draft</td>
