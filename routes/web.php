@@ -15,3 +15,6 @@ Route::get('/', 'HomeController@index')->name('/');
 Route::get('/lists/{id}', 'HomeController@lists')->name('lists');
 Route::get('/page/{id}', 'HomeController@page')->name('page');
 Route::get('/alumni', 'HomeController@alumni')->name('alumni');
+
+require __DIR__.'/dashboard';
+require __DIR__.'/alumni';
