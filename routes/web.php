@@ -13,15 +13,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-/*====== Admin Routes ======*/
-require __DIR__.'/dashboard.php';
-=======
 Route::get('/', 'HomeController@index')->name('/');
 Route::get('/lists/{id}', 'HomeController@lists')->name('lists');
 Route::get('/page/{id}', 'HomeController@page')->name('page');
 Route::get('/alumni', 'HomeController@alumni')->name('alumni');
 
+/*====== Admin Routes ======*/
 require __DIR__.'/dashboard';
+
+/*====== Alumni Routes ======*/
 require __DIR__.'/alumni';
