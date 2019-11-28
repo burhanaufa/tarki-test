@@ -10,8 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-<<<<<<< HEAD
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,4 +25,3 @@ Route::get('/alumni', 'HomeController@alumni')->name('alumni');
 
 require __DIR__.'/dashboard';
 require __DIR__.'/alumni';
->>>>>>> frontend-landingpage
