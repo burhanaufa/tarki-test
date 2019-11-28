@@ -19,7 +19,7 @@ Route::get('/page/{id}', 'HomeController@page')->name('page');
 Route::get('/alumni', 'HomeController@alumni')->name('alumni');
 
 /*====== Admin Routes ======*/
-require __DIR__.'/dashboard';
+require __DIR__.'/dashboard.php';
 
 /*====== Alumni Routes ======*/
-require __DIR__.'/alumni';
+require __DIR__.'/alumni.php';
