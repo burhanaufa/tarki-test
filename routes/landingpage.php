@@ -14,9 +14,3 @@
 Route::get('/', 'HomeController@index')->name('/');
 Route::get('/lists/{id}', 'HomeController@lists')->name('lists');
 Route::get('/page/{id}', 'HomeController@page')->name('page');
-
-/*====== Admin Routes ======*/
-require __DIR__.'/dashboard.php';
-
-/*====== Alumni Routes ======*/
-require __DIR__.'/alumni.php';
