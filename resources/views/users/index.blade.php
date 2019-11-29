@@ -28,7 +28,7 @@
                             <td>{{ date('d M Y H:i:s', strtotime($user->created_at)) }}</td>
                             <td><a href="{{ route('user_role.create', $user->id) }}" class="btn btn-primary">Roles</a></td>
                             <td>
-                                <a href="{{ url("users/$user->id/edit") }}" class="btn btn-sm btn-success">
+                                <a href="{{ url("dashboard/users/$user->id/edit") }}" class="btn btn-sm btn-success">
                                     <i class="fa fa-edit"></i> Edit
                                 </a> |
 
@@ -44,6 +44,7 @@
                         @php $i++; @endphp
                     @endforeach
                 </table>
+                {{ $users->links() }}
             </div>
         </div>
     </section>

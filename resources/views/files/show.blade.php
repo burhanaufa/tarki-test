@@ -13,7 +13,7 @@
                 <table class="table table-striped">
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>File</th>
                         <th>Created At</th>
                         <th>Action</th>
                     </tr>
@@ -42,6 +42,7 @@
                         @php $i++; @endphp
                     @endforeach
                 </table>
+                {{ $files->links() }}
             </div>
         </div>
     </section>
