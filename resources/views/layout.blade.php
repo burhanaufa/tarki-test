@@ -44,8 +44,8 @@
                 <!-- nav -->
                 <nav class="lavi-wthree">
                     <div id="logo">
-                        <h1> <a class="navbar-brand" href="index.html">Tarakanita</a>
-                        </h1>
+                        <h4> <a class="navbar-brand" href="index.html">Tarakanita</a>
+                        </h4>
                     </div>
 
                     <ul class="menu mr-auto">
@@ -91,7 +91,7 @@
                         @endforeach
                         @endif
                         <li class="log-vj ml-lg-5"><a href="{{route('alumni')}}"><span class="fa fa-user-circle-o" aria-hidden="true"></span> Portal Alumni</a>
-
+                        <li><a href="#"><img src="{{ asset('assets/images/LOGO_TARKI_PNG.png')}}" style="width:30px"></a></li>
                     </ul>
                 </nav>
                 <!-- //nav -->
@@ -136,13 +136,13 @@
                 <div class="content-bg-1 one-bg">
                     <span class="fa fa-lightbulb-o" aria-hidden="true"></span>
                     <h3 class="ban-text">
-                        Creative Study Pattern
+                        Computer Based Exam
                     </h3>
                 </div>
                 <div class="content-bg-1 two-bg">
                     <span class="fa fa-book"></span>
                     <h3 class="ban-text">
-                        Quick Crash Courses
+                        Penerimaan Siswa baru
                     </h3>
                 </div>
                 <div class="content-bg-1 third-bg">
@@ -168,7 +168,7 @@
         <div class="container py-sm-3">
             <div class="row footer-grids">
                 <div class="col-lg-3 col-sm-6 mb-lg-0 mb-sm-5 mb-4">
-                    <h2> <a class="navbar-brand mb-3" href="index.html">EduWily</a>
+                    <h2> <a class="navbar-brand mb-3" href="index.html">Tarakanita</a>
                     </h2>
                     <p class="mb-3">Onec Consequat sapien ut cursus rhoncus. Nullam dui mi, vulputate ac metus semper quis luctus sed.</p>
                     <h5>Trusted by <span>500+ People</span> </h5>
@@ -217,6 +217,7 @@
             </div>
         </div>
     </footer>
+
     <!-- //footer -->
     <!-- copyright -->
     <div class="copy_right p-3 d-flex justify-content-around">
@@ -234,7 +235,9 @@
         <!-- move top -->
     </div>
     <!-- //copyright -->
+    <section id="copyright">
 
+    </section>
 
 
 
