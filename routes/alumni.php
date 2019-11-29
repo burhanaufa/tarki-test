@@ -10,4 +10,5 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/alumni', 'AlumniController@index')->name('alumni');
+Route::post('/alumni/login', 'AlumniController@login')->name('alumni-login');
