@@ -132,6 +132,7 @@
                 </div>
             </div>
             <!-- banner-w3ls-info -->
+			<!--
             <div class="banner-w3ls-info">
                 <div class="content-bg-1 one-bg">
                     <span class="fa fa-lightbulb-o" aria-hidden="true"></span>
@@ -152,6 +153,7 @@
                     </h3>
                 </div>
             </div>
+			-->
             <!-- //banner-w3ls-info -->
         </div>
         <!-- //banner slider -->
