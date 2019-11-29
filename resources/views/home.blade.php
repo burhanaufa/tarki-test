@@ -17,9 +17,8 @@
         <div class="container py-xl-5 py-lg-3">
             <div class="row">
                 <div class="col-lg-5 welcome-left">
-                    <p>What We Provide</p>
-                    <h3 class="tittle-wthree mt-2 mb-3">We Rank the Best
-                        Courses on the Web</h3>
+                    {{-- <p>What We Provide</p> --}}
+                    <h3 class="tittle-wthree mt-2 mb-3">Daftar Unit</h3>
 
                     <p class="mt-4 pr-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porta erat sit amet eros
                         sagittis, quis
@@ -31,36 +30,36 @@
 
                         <div class="col-sm-4 service-1-w3ls serve-gd2">
                             <div class="serve-grid mt-4">
-                                <span class="fa fa-language s2"></span>
-                                <p class="mt-2">Languages</p>
+                                <span><img src="{{ asset('assets/images/bengkulu.png')}}" style="width:100px;margin-top:30px"></span>
+                                <p class="mt-2">Bengkulu</p>
                             </div>
                             <div class="serve-grid mt-4">
-                                <span class="fa fa-tachometer s3"></span>
-                                <p class="mt-2">Software </p>
+                                <span><img src="{{ asset('assets/images/LAHAT_ICON.png')}}" style="width:100px;margin-top:30px"></span>
+                                <p class="mt-2">Lahat </p>
                             </div>
                         </div>
                         <div class="col-sm-4 service-1-w3ls serve-gd3">
                             <div class="serve-grid mt-4">
-                                <span class="fa fa-handshake-o s4"></span>
-                                <p class="mt-2">Business</p>
+                                <span><img src="{{ asset('assets/images/YOGYAKARTA_ICON.png')}}" style="width:100px;margin-top:30px"></span>
+                                <p class="mt-2">Yogyakarta</p>
                             </div>
                             <div class="serve-grid mt-4">
-                                <span class="fa fa-address-card-o s5"></span>
-                                <p class="text-li mt-2">Coaching </p>
+                                <span><img src="{{ asset('assets/images/SURABAYA_ICON.png')}}" style="width:100px;margin-top:30px"></span>
+                                <p class="text-li mt-2">Surabaya </p>
                             </div>
                             <div class="serve-grid mt-4">
-                                <span class="fa fa-paint-brush s6"></span>
-                                <p class="mt-2">Design </p>
+                                <span><img src="{{ asset('assets/images/TANGERANG_ICON.png')}}" style="width:100px;margin-top:30px"></span>
+                                <p class="mt-2">Tangerang </p>
                             </div>
                         </div>
                         <div class="col-sm-4 service-1-w3ls serve-gd2">
                             <div class="serve-grid mt-4">
-                                <span class="fa fa-podcast s1"></span>
-                                <p class="mt-2">Development </p>
+                                <span><img src="{{ asset('assets/images/JAKARTA_ICON.png')}}" style="width:100px;margin-top:30px"></span>
+                                <p class="mt-2">Jakarta </p>
                             </div>
                             <div class="serve-grid mt-4">
-                                <span class="fa fa-book s7"></span>
-                                <p class="mt-2">Literature</p>
+                                <span><img src="{{ asset('assets/images/JATENG_ICON.png')}}" style="width:100px;margin-top:30px"></span>
+                                <p class="mt-2">Jawa Tengah</p>
                             </div>
                         </div>
                     </div>
@@ -73,18 +72,16 @@
     <!-- services -->
     <section class="services text-center py-5" id="services">
         <div class="container py-md-5">
-            <h3 class="tittle-wthree text-center">Real Facts</h3>
-            <p class="sub-tittle text-center mt-4 mb-sm-5 mb-4">Sed do eiusmod tempor incididunt ut labore et dolore
-                magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+            <h3 class="tittle-wthree text-center">Partners</h3>
+
             <div class="row ser-sec-1">
                 <div class="col-md-4 ser-w3pvt-gd-wthree">
                     <div class="icon">
-                        <span class="fa fa-lightbulb-o s1"></span>
+                        {{-- <span><img src="{{ asset('assets/images/MSNew2_8_1.jpg')}}" style="width:100px;margin-bottom:40px"></span> --}}
                     </div>
                     <!-- Icon ends here -->
                     <div class="service-content">
-                        <h5> New Classes</h5>
+                        <h5>Gemilang Technology</h5>
                         <p class="serp">
                             Quisque sagittis lacus eu lorem sodalesd enean adipiscing.
                         </p>
@@ -92,11 +89,11 @@
                 </div>
                 <div class="col-md-4 ser-w3pvt-gd-wthree">
                     <div class="icon">
-                        <span class="fa fa-user s4"></span>
+                        <span><img src="{{ asset('assets/images/MSNew2_8_1.jpg')}}" style="width:100px;margin-bottom:40px"></span>
                     </div>
                     <!-- Icon ends here -->
                     <div class="service-content">
-                        <h5>Expert Mentors</h5>
+                        <h5>Microsoft</h5>
                         <p class="serp">
                             Quisque sagittis lacus eu lorem sodalesd enean adipiscing.
                         </p>
@@ -104,107 +101,31 @@
                 </div>
                 <div class="col-md-4 ser-w3pvt-gd-wthree">
                     <div class="icon">
-                        <span class="fa fa-question-circle s3"></span>
+                        <span><img src="{{ asset('assets/images/ppm_mainlogo_only.jpg')}}" style="width:100px;margin-top:20px;margin-bottom:40px"></span>
                     </div>
                     <!-- .Icon ends here -->
                     <div class="service-content">
-                        <h5>Live Support</h5>
+                        <h5>PPM Manajemen</h5>
                         <p class="serp">
                             Quisque sagittis lacus eu lorem sodalesd enean adipiscing.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="row ser-sec-1">
-                <div class="col-md-4 ser-w3pvt-gd-wthree">
-                    <div class="icon">
-                        <span class="fa fa-gift s6"></span>
-                    </div>
-                    <!-- Icon ends here -->
-                    <div class="service-content">
-                        <h5>Lifetime Access</h5>
-                        <p class="serp">
-                            Quisque sagittis lacus eu lorem sodalesd enean adipiscing.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 ser-w3pvt-gd-wthree">
-                    <div class="icon">
-                        <span class="fa fa-angellist s5"></span>
-                    </div>
-                    <!-- Icon ends here -->
-                    <div class="service-content">
-                        <h5>Membership</h5>
-                        <p class="serp">
-                            Quisque sagittis lacus eu lorem sodalesd enean adipiscing.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 ser-w3pvt-gd-wthree">
-                    <div class="icon">
-                        <span class="fa fa-folder-open-o s6"></span>
-                    </div>
-                    <!-- .Icon ends here -->
-                    <div class="service-content">
-                        <h5>25000+ Courses</h5>
-                        <p class="serp">
-                            Quisque sagittis lacus eu lorem sodalesd enean adipiscing.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row ser-sec-1">
-                <div class="col-md-4 ser-w3pvt-gd-wthree border-bottom-0 bottom-vj-gds">
-                    <div class="icon">
-                        <span class="fa fa-black-tie s3"></span>
-                    </div>
-                    <!-- Icon ends here -->
-                    <div class="service-content">
-                        <h5>Law & Ethic</h5>
-                        <p class="serp">
-                            Quisque sagittis lacus eu lorem sodalesd enean adipiscing.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 ser-w3pvt-gd-wthree border-bottom-0 bottom-vj-gds">
-                    <div class="icon">
-                        <span class="fa fa-music s2"></span>
-                    </div>
-                    <!-- Icon ends here -->
-                    <div class="service-content">
-                        <h5>Art and Music</h5>
-                        <p class="serp">
-                            Quisque sagittis lacus eu lorem sodalesd enean adipiscing.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 ser-w3pvt-gd-wthree border-bottom-0">
-                    <div class="icon">
-                        <span class="fa fa-bar-chart s7"></span>
-                    </div>
-                    <!-- .Icon ends here -->
-                    <div class="service-content">
-                        <h5>Data Scientist</h5>
-                        <p class="serp">
-                            Quisque sagittis lacus eu lorem sodalesd enean adipiscing.
-                        </p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
     <!-- //services -->
     <!--/mid-content-->
-    <section class="last-content py-5">
+    <section class="last-content py-5" style="background-color: #ffff99">
         <div class="container py-md-3 text-center">
             <div class="last-lavi-inner-content px-lg-5">
-                <h3 class="mb-4 tittle-wthree">Get started with <span>Online </span> Education !</h3>
-                <p class="px-lg-5">Sed ut perspiciatis unde omnis natus error dolor volup tatem ed accus antium dolor emque
-                    laudantium, totam rem aperiam, eaqu ipsa quae ab illo quasi architi ecto beatae vitae dicta
-                    sunt dolor ipsum.</p>
+                <h3 class="mb-4 tittle-wthree">Event</h3>
+                <p class="px-lg-5" style="color:#555">Follow Update Event Terbaru dari Tarakanita</p>
                 <div class="buttons mt-md-4 mt-3">
-                    <a href="#apply" class="btn btn-default">Apply Now</a>
-                    <a href="contact.html" class="btn btn1"> Hire Us </a>
+                    <a href="#apply" class="btn btn-default">Berita Kegiatan</a>
+                    <a href="contact.html" class="btn btn1"> Agenda Kegiatan </a>
                 </div>
             </div>
         </div>
@@ -314,30 +235,11 @@
         <div class="container py-md-5">
             <div class="row">
                 <div class="col-lg-7 apply-info px-lg-5">
-                    <h3 class="tittle-wthree apply-hd text-white mb-lg-5 mb-3">It’s limited seating! Hurry up. Get the Coaching Training for Free</h3>
+                    <h3 class="tittle-wthree apply-hd text-white mb-lg-5 mb-3">Hurry Up !</h3>
                     <div class="row wthree-stats-inf">
                         <div class="col-6 stats_w3pvt_counter_grid mt-3">
                             <div class="d-flex">
-                                <p class="counter">758</p>
-                                <p class="para-w3pvt">Courses</p>
-                            </div>
-                        </div>
-                        <div class="col-6 stats_w3pvt_counter_grid mt-3">
-                            <div class="d-flex">
-                                <p class="counter">600</p>
-                                <p class="para-w3pvt">Lectures</p>
-                            </div>
-                        </div>
-                        <div class="col-6 stats_w3pvt_counter_grid mt-3">
-                            <div class="d-flex">
-                                <p class="counter">2422</p>
-                                <p class="para-w3pvt">Students</p>
-                            </div>
-                        </div>
-                        <div class="col-6 stats_w3pvt_counter_grid mt-3">
-                            <div class="d-flex">
-                                <p class="counter">20k</p>
-                                <p class="para-w3pvt">Years</p>
+                                <p class="para-w3pvt">Daftarkan dirimu dan dapatkan kesempatan bekerja dan belajar di Yayasan Tarakanita</p>
                             </div>
                         </div>
                     </div>
@@ -345,7 +247,7 @@
 
                 </div>
                 <div class="col-lg-5 login p-md-5 p-4 mx-auto bg-white mw-100">
-                    <h5 class="text-center mb-4">Apply Now</h5>
+                    <h5 class="text-center mb-4">Career</h5>
                     <form action="#" method="post">
                         <div class="form-group">
                             <label>First name</label>

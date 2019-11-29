@@ -118,10 +118,15 @@ nav ul {
     position: relative;
 }
 
-ul.menu {
-    margin-top: 0.4em;
+ ul.menu {
+    margin-top: -0.5em;
 }
+#copyright{
+    background-image: url('../images/FOOTER_TARKI.png');
+    height:250px;
+    width:100%;
 
+}
 /* Positioning the navigation items inline */
 
 nav ul li {
@@ -135,7 +140,7 @@ nav a {
     color: #555;
     font-size: 13px;
     letter-spacing: 1px;
-    padding: 0 14px;
+    padding: 0 7px;
     font-weight: 600;
     margin: 0 0.5em;
     text-transform: uppercase;
