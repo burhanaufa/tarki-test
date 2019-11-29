@@ -10,8 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*====== Landing Page Routes ======*/
-require __DIR__.'/landingpage.php';
+
+Route::get('/', 'HomeController@index')->name('/');
+Route::get('/lists/{id}', 'HomeController@lists')->name('lists');
+Route::get('/page/{id}', 'HomeController@page')->name('page');
+
 /*====== Admin Routes ======*/
 require __DIR__.'/dashboard.php';
 
