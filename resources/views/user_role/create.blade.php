@@ -22,7 +22,9 @@
                             @foreach ($roles as $role)
                                 <div class="col-md-4">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" value="{{ $role->id }}" id="{{ $role->role_name }}" name="roles[]">
+                                        <input type="checkbox" class="custom-control-input"
+                                        value="{{ $role->id }}" id="{{ $role->role_name }}"
+                                        name="roles[]" {{ in_array($role->id, $role_id) ? 'checked' : '' }}>
                                         <label class="custom-control-label" for="{{ $role->role_name }}">{{ $role->role_name }}</label>
                                     </div>
                                 </div>

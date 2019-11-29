@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\LogUser;
 use App\File;
 
 class FileController extends Controller
@@ -46,6 +47,8 @@ class FileController extends Controller
             'filename.*' => 'mimes:doc,pdf,docx,zip,jpg,png,jpeg,gif,mp4,mkv,m4a,avi,mov'
         ]);
 
+        $user_name = Auth::user()->username;
+
         foreach($request->file('filename') as $file)
         {
             $ext = strtolower($file->getClientOriginalExtension());
@@ -72,6 +75,14 @@ class FileController extends Controller
             $new_file->created_by = Auth::user()->id;
             $new_file->save();
         }
+
+        $log_user = new LogUser;
+        $log_user->ip_address = $request->ip();
+        $log_user->user_agent = $request->header('User-Agent');
+        $log_user->url = $request->url();
+        $log_user->description = "User $user_name added files to files table";
+        $log_user->created_by = Auth::user()->id;
+        $log_user->save();
 
         return redirect()->route('files.show', $request->post_id);
     }
@@ -122,6 +133,8 @@ class FileController extends Controller
     {
         $file = File::find($id);
 
+        $user_name = Auth::user()->username;
+
         $myFile = public_path(). '/images/posts/' .$file->file_name;
 
         if (is_file($myFile)) {
@@ -129,6 +142,14 @@ class FileController extends Controller
         }
 
         $file->delete();
+
+        $log_user = new LogUser;
+        $log_user->ip_address = \Request::ip();
+        $log_user->user_agent = \Request::header('User-Agent');
+        $log_user->url = \Request::url();
+        $log_user->description = "User $user_name deleted $file->file_name";
+        $log_user->created_by = Auth::user()->id;
+        $log_user->save();
 
         return redirect()->route('files.show', $post_id);
     }

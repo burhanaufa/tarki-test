@@ -32,7 +32,7 @@
               </p>
             </a>
           </li>
-            <li class="nav-item has-treeview {{ Request::is('categories*') || Request::is('posts*') ? 'menu-open' : '' }}">
+            <li class="nav-item has-treeview {{ Request::is('*categories*') || Request::is('*posts*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -42,13 +42,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('categories') }}" class="nav-link {{ Request::is('categories*') ? 'active' : '' }}">
+                <a href="{{ url('dashboard/categories') }}" class="nav-link {{ Request::is('*categories*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('posts') }}" class="nav-link {{ Request::is('posts*') ? 'active' : '' }}">
+                <a href="{{ url('dashboard/posts') }}" class="nav-link {{ Request::is('*posts*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Posts</p>
                 </a>
@@ -78,7 +78,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview {{ Request::is('users*') || Request::is('roles*') || Request::is('log-users*') ? 'menu-open' : '' }}">
+          <li class="nav-item has-treeview {{ Request::is('*users*') || Request::is('*roles*')
+                                                || Request::is('*log-users*') || Request::is('*user_role*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -88,13 +89,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('users') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}" class="nav-link">
+                <a href="{{ url('dashboard/users') }}" class="nav-link {{ Request::is('*users*') ? 'active' : '' }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('roles') }}" class="nav-link {{ Request::is('roles*') ? 'active' : '' }}">
+                <a href="{{ url('dashboard/roles') }}" class="nav-link {{ Request::is('*roles*') || Request::is('*user_role*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Roles</p>
                 </a>
