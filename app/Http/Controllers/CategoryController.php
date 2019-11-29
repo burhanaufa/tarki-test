@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
+use App\LogUser;
 
 class CategoryController extends Controller
 {
@@ -50,6 +51,8 @@ class CategoryController extends Controller
             'name' => 'required|max:50'
         ]);
 
+        $user_name = Auth::user()->username;
+
         $category = new Category;
         $category->category_name = $request->name;
         $category->slug = Str::slug($request->name, '-');
@@ -84,9 +87,17 @@ class CategoryController extends Controller
         }
 
         if ($category->save()) {
-            return redirect('categories');
+            $log_user = new LogUser;
+            $log_user->ip_address = $request->ip();
+            $log_user->user_agent = $request->header('User-Agent');
+            $log_user->url = $request->url();
+            $log_user->description = "User $user_name created $category->category_name category";
+            $log_user->created_by = Auth::user()->id;
+            $log_user->save();
+
+            return redirect('dashboard/categories');
         } else {
-            return redirect('categories/create')->with('error', 'Failed to save category');
+            return redirect('dashboard/categories/create')->with('error', 'Failed to save category');
         }
 
     }
@@ -126,6 +137,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
+        $user_name = Auth::user()->username;
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name = $request->name. '.' .$image->getClientOriginalExtension();
@@ -170,9 +183,17 @@ class CategoryController extends Controller
                 $image->move($destination, $image_name);
             }
 
-            return redirect('categories');
+            $log_user = new LogUser;
+            $log_user->ip_address = $request->ip();
+            $log_user->user_agent = $request->header('User-Agent');
+            $log_user->url = $request->url();
+            $log_user->description = "User $user_name updated $category->category_name category";
+            $log_user->created_by = Auth::user()->id;
+            $log_user->save();
+
+            return redirect('dashboard/categories');
         } else {
-            return redirect('categories/create')->with('error', 'Failed to save category');
+            return redirect('dashboard/categories/create')->with('error', 'Failed to save category');
         }
     }
 
@@ -186,6 +207,8 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
+        $user_name = Auth::user()->username;
+
         $myFile = public_path(). '/images/categories/' .$category->image;
         if (is_file($myFile)) {
             unlink($myFile);
@@ -193,6 +216,14 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect('categories');
+        $log_user = new LogUser;
+        $log_user->ip_address = \Request::ip();
+        $log_user->user_agent = \Request::header('User-Agent');
+        $log_user->url = \Request::url();
+        $log_user->description = "User $user_name deleted $category->category_name category";
+        $log_user->created_by = Auth::user()->id;
+        $log_user->save();
+
+        return redirect('dashboard/categories');
     }
 }

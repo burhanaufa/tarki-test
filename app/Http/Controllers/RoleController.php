@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\LogUser;
 use App\Role;
 
 class RoleController extends Controller
@@ -47,14 +48,24 @@ class RoleController extends Controller
             'rolename' => 'required|max:50'
         ]);
 
+        $user_name = Auth::user()->username;
+
         $role = new Role;
         $role->role_name = $request->rolename;
         $role->created_by = Auth::user()->id;
 
         if ($role->save()) {
-            return redirect('roles');
+            $log_user = new LogUser;
+            $log_user->ip_address = $request->ip();
+            $log_user->user_agent = $request->header('User-Agent');
+            $log_user->url = $request->url();
+            $log_user->description = "User $user_name added $role->role_name to roles";
+            $log_user->created_by = Auth::user()->id;
+            $log_user->save();
+
+            return redirect('dashboard/roles');
         } else {
-            return redirect('roles/create')->withErrors('Failed to save role!');
+            return redirect('dashboard/roles/create')->withErrors('Failed to save role!');
         }
 
     }
@@ -96,14 +107,24 @@ class RoleController extends Controller
             'rolename' => 'required|max:50'
         ]);
 
+        $user_name = Auth::user()->username;
+
         $role = Role::find($id);
         $role->role_name = $request->rolename;
         $role->created_by = Auth::user()->id;
 
         if ($role->save()) {
-            return redirect('roles');
+            $log_user = new LogUser;
+            $log_user->ip_address = $request->ip();
+            $log_user->user_agent = $request->header('User-Agent');
+            $log_user->url = $request->url();
+            $log_user->description = "User $user_name updated $role->role_name";
+            $log_user->created_by = Auth::user()->id;
+            $log_user->save();
+
+            return redirect('dashboard/roles');
         } else {
-            return redirect("roles/$role->id/edit")->withErrors('Failed to save role!');
+            return redirect("dashboard/roles/$role->id/edit")->withErrors('Failed to save role!');
         }
     }
 
@@ -118,6 +139,16 @@ class RoleController extends Controller
         $role = Role::find($id);
         $role->delete();
 
-        return redirect('roles');
+        $user_name = Auth::user()->username;
+
+        $log_user = new LogUser;
+        $log_user->ip_address = \Request::ip();
+        $log_user->user_agent = \Request::header('User-Agent');
+        $log_user->url = \Request::url();
+        $log_user->description = "User $user_name deleted role $role->role_name";
+        $log_user->created_by = Auth::user()->id;
+        $log_user->save();
+
+        return redirect('dashboard/roles');
     }
 }

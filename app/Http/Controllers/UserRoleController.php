@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\LogUser;
 use App\User;
 use App\Role;
 
@@ -37,6 +38,8 @@ class UserRoleController extends Controller
             'roles' => 'required|array'
         ]);
 
+        $user_name = Auth::user()->username;
+
         $roles = array();
 
         foreach ($request->roles as $role) {
@@ -44,7 +47,15 @@ class UserRoleController extends Controller
         }
 
         $user = User::find($request->user_id);
-        $user->roles()->attach($roles);
+        $user->roles()->sync($roles);
+
+        $log_user = new LogUser;
+        $log_user->ip_address = $request->ip();
+        $log_user->user_agent = $request->header('User-Agent');
+        $log_user->url = $request->url();
+        $log_user->description = "User $user_name added user role to $user->username";
+        $log_user->created_by = Auth::user()->id;
+        $log_user->save();
 
         return redirect()->route('users.index');
     }

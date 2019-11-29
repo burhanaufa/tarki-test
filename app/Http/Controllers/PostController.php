@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\File;
+use App\LogUser;
 use App\Category;
 
 class PostController extends Controller
@@ -56,6 +57,8 @@ class PostController extends Controller
             'filename.*' => 'mimes:doc,pdf,docx,zip,jpg,png,jpeg,gif,mp4,mkv,m4a,avi,mov'
         ]);
 
+        $user_name = Auth::user()->username;
+
         try {
             $post = new Post;
             $post->title = $request->title;
@@ -92,7 +95,15 @@ class PostController extends Controller
                 $new_file->save();
             }
 
-            return redirect('posts');
+            $log_user = new LogUser;
+            $log_user->ip_address = $request->ip();
+            $log_user->user_agent = $request->header('User-Agent');
+            $log_user->url = $request->url();
+            $log_user->description = "User $user_name added $post->title to posts";
+            $log_user->created_by = Auth::user()->id;
+            $log_user->save();
+
+            return redirect('dashboard/posts');
 
         } catch (\Throwable $th) {
             throw $th;
@@ -141,6 +152,8 @@ class PostController extends Controller
             'filename.*' => 'mimes:doc,pdf,docx,zip,jpg,png,jpeg,gif,mp4,mkv,m4a,avi,mov'
         ]);
 
+        $user_name = Auth::user()->username;
+
         try {
             $post = Post::find($id);
             $post->title = $request->title;
@@ -179,7 +192,15 @@ class PostController extends Controller
                 }
             }
 
-            return redirect('posts');
+            $log_user = new LogUser;
+            $log_user->ip_address = $request->ip();
+            $log_user->user_agent = $request->header('User-Agent');
+            $log_user->url = $request->url();
+            $log_user->description = "User $user_name updated $post->title post";
+            $log_user->created_by = Auth::user()->id;
+            $log_user->save();
+
+            return redirect('dashboard/posts');
 
         } catch (\Throwable $th) {
             throw $th;
@@ -196,6 +217,8 @@ class PostController extends Controller
     {
         $files = File::where('post_id', $id);
 
+        $user_name = Auth::user()->username;
+
         foreach ($files->get() as $file) {
             $myFile = public_path(). '/images/posts/' .$file->file_name;
             if (is_file($myFile)) {
@@ -208,6 +231,14 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->delete();
 
-        return redirect('posts');
+        $log_user = new LogUser;
+        $log_user->ip_address = \Request::ip();
+        $log_user->user_agent = \Request::header('User-Agent');
+        $log_user->url = \Request::url();
+        $log_user->description = "User $user_name deleted $post->title post";
+        $log_user->created_by = Auth::user()->id;
+        $log_user->save();
+
+        return redirect('dashboard/posts');
     }
 }

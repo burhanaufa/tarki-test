@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\LogUser;
 use App\User;
 
 class UserController extends Controller
@@ -52,6 +53,8 @@ class UserController extends Controller
             'status' => 'required'
         ]);
 
+        $user_name = Auth::user()->username;
+
         try {
             $user = new User;
             $user->username = $request->username;
@@ -62,7 +65,15 @@ class UserController extends Controller
             $user->created_by = Auth::user()->id;
             $user->save();
 
-            return redirect('users');
+            $log_user = new LogUser;
+            $log_user->ip_address = $request->ip();
+            $log_user->user_agent = $request->header('User-Agent');
+            $log_user->url = $request->url();
+            $log_user->description = "User $user_name added user $user->username";
+            $log_user->created_by = Auth::user()->id;
+            $log_user->save();
+
+            return redirect('dashboard/users');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -110,6 +121,8 @@ class UserController extends Controller
             'status' => 'required'
         ]);
 
+        $user_name = Auth::user()->username;
+
         try {
             $user = User::find($id);
 
@@ -126,9 +139,17 @@ class UserController extends Controller
                 $user->created_by = Auth::user()->id;
                 $user->save();
 
-                return redirect('users');
+                $log_user = new LogUser;
+                $log_user->ip_address = $request->ip();
+                $log_user->user_agent = $request->header('User-Agent');
+                $log_user->url = $request->url();
+                $log_user->description = "User $user_name updated user $user->username";
+                $log_user->created_by = Auth::user()->id;
+                $log_user->save();
+
+                return redirect('dashboard/users');
             } else {
-                return redirect("users/$user->id/edit")->withErrors('Wrong Password!');
+                return redirect("dashboard/users/$user->id/edit")->withErrors('Wrong Password!');
             }
 
         } catch (\Throwable $th) {
@@ -145,8 +166,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        $user_name = Auth::user()->username;
         $user->delete();
 
-        return redirect('users');
+        $log_user = new LogUser;
+        $log_user->ip_address = \Request::ip();
+        $log_user->user_agent = \Request::header('User-Agent');
+        $log_user->url = \Request::url();
+        $log_user->description = "User $user_name deleted role $user->username";
+        $log_user->created_by = Auth::user()->id;
+        $log_user->save();
+
+        return redirect('dashboard/users');
     }
 }
