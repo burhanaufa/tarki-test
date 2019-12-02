@@ -68,10 +68,12 @@ class PostController extends Controller
             $post->created_by = Auth::user()->id;
             $post->save();
 
+            $file_idx = 0;
             foreach($request->file('filename') as $file)
             {
                 $ext = $file->getClientOriginalExtension();
-                $name = substr($file->getClientOriginalName(), -50, 50);
+                $code = base64_encode($file_idx. '' .date('Y-m-d H:i:s'));
+                $name = substr($code. '' .$file->getClientOriginalName(), -50, 50);
                 $file->move(public_path().'/images/posts/', $name);
 
                 $new_file = new File;
@@ -93,6 +95,8 @@ class PostController extends Controller
 
                 $new_file->created_by = Auth::user()->id;
                 $new_file->save();
+
+                $file_idx++;
             }
 
             $log_user = new LogUser;
@@ -164,10 +168,12 @@ class PostController extends Controller
             $post->save();
 
             if ($request->hasFile('filename')) {
+                $file_idx = 0;
                 foreach($request->file('filename') as $file)
                 {
                     $ext = $file->getClientOriginalExtension();
-                    $name = substr($file->getClientOriginalName(), -50, 50);
+                    $code = base64_encode($file_idx. '' .date('Y-m-d H:i:s'));
+                    $name = substr($code. '' .$file->getClientOriginalName(), -50, 50);
                     $file->move(public_path().'/images/posts/', $name);
 
                     $new_file = new File;
@@ -189,6 +195,8 @@ class PostController extends Controller
 
                     $new_file->created_by = Auth::user()->id;
                     $new_file->save();
+
+                    $file_idx++;
                 }
             }
 

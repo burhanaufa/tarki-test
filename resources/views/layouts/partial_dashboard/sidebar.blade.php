@@ -89,7 +89,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('dashboard/users') }}" class="nav-link {{ Request::is('*users*') ? 'active' : '' }}" class="nav-link">
+                <a href="{{ url('dashboard/users') }}" class="nav-link {{ Request::is('*/users*') ? 'active' : '' }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
@@ -101,7 +101,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('log-users') }}" class="nav-link">
+                <a href="{{ route('log-users') }}" class="nav-link {{ Request::is('*log-users*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Log Users</p>
                 </a>
