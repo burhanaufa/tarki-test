@@ -9,6 +9,7 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('posts', 'PostController');
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
+    Route::resource('regions', 'RegionController');
 
     Route::resource('files', 'FileController')->except([
         'index', 'create', 'destroy'

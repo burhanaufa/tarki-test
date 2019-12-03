@@ -209,9 +209,11 @@ class CategoryController extends Controller
 
         $user_name = Auth::user()->username;
 
-        $myFile = public_path(). '/images/categories/' .$category->image;
-        if (is_file($myFile)) {
-            unlink($myFile);
+        if (!empty($category->image)) {
+            $myFile = public_path(). '/images/categories/' .$category->image;
+            if (is_file($myFile)) {
+                unlink($myFile);
+            }
         }
 
         $category->delete();
