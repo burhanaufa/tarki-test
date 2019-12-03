@@ -136,6 +136,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|max:50'
+        ]);
+
         $category = Category::find($id);
         $user_name = Auth::user()->username;
 

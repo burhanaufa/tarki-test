@@ -15,6 +15,10 @@ Route::prefix('dashboard')->group(function () {
         'index', 'create', 'destroy'
     ]);
 
+    Route::resource('configurations', 'ConfigurationController')->except([
+        'store', 'create', 'destroy'
+    ]);
+
     Route::get('/files/create/{post_id}', 'FileController@create')->name('files.create');
     Route::get('/user_role/create/{user_id}', 'UserRoleController@create')->name('user_role.create');
     Route::post('/user_role/store', 'UserRoleController@store')->name('user_role.store');
