@@ -15,4 +15,9 @@ class Post extends Model
     {
         return $this->hasMany('App\File');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

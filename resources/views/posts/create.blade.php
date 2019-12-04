@@ -19,6 +19,7 @@
                         @csrf
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" name="title">
+                        <p class="text-danger">Maksimal 50 Karakter</p>
                         <label for="category_id">Category</label>
                         <select name="category_id" id="category_id" class="form-control">
                             @foreach ($categories as $category)
@@ -27,6 +28,7 @@
                         </select>
                         <label for="headline">Headline</label>
                         <textarea name="headline" id="headline" cols="30" rows="10" class="form-control"></textarea>
+                        <p class="text-danger">Maksimal 100 Karakter</p>
                         <label for="description">Description</label>
                         <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
                         <label>File</label>

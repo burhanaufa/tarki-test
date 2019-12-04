@@ -25,12 +25,16 @@
                             <td>{{ $i }}</td>
                             <td>{{ $category->category_name }}</td>
                             <td>{{ $category->slug }}</td>
-                            <td>
-                                <img width="65" height="65" src="{{ env('APP_URL'). '/images/categories/' .$category->image }}" alt="">
-                            </td>
+                            @if (empty($category->image))
+                                <td>-</td>
+                            @else
+                                <td>
+                                    <img width="65" height="65" src="{{ env('APP_URL'). '/images/categories/' .$category->image }}" alt="">
+                                </td>
+                            @endif
                             <td>{{ date('d M Y H:i:s', strtotime($category->created_at)) }}</td>
                             <td>
-                                <a href="{{ url("categories/$category->id/edit") }}" class="btn btn-sm btn-success">
+                                <a href="{{ url("dashboard/categories/$category->id/edit") }}" class="btn btn-sm btn-success">
                                     <i class="fa fa-edit"></i> Edit
                                 </a> |
 
@@ -46,6 +50,7 @@
                         @php $i++; @endphp
                     @endforeach
                 </table>
+                {{ $categories->links() }}
             </div>
         </div>
     </section>

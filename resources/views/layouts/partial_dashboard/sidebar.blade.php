@@ -4,7 +4,7 @@
     <a href="index3.html" class="brand-link">
       <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Yayasan Tarakanita</span>
     </a>
 
     <!-- Sidebar -->
@@ -25,14 +25,14 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="{{ url('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
           </li>
-            <li class="nav-item has-treeview {{ Request::is('*categories*') || Request::is('*posts*') ? 'menu-open' : '' }}">
+            <li class="nav-item has-treeview {{ Request::is('*categories*') || Request::is('*posts*') || Request::is('*files*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -48,7 +48,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('dashboard/posts') }}" class="nav-link {{ Request::is('*posts*') ? 'active' : '' }}">
+                <a href="{{ url('dashboard/posts') }}" class="nav-link {{ Request::is('*posts*') || Request::is('*files*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Posts</p>
                 </a>
@@ -89,7 +89,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('dashboard/users') }}" class="nav-link {{ Request::is('*users*') ? 'active' : '' }}" class="nav-link">
+                <a href="{{ url('dashboard/users') }}" class="nav-link {{ Request::is('*/users*') ? 'active' : '' }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
@@ -101,14 +101,14 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/ribbons.html" class="nav-link">
+                <a href="{{ route('log-users') }}" class="nav-link {{ Request::is('*log-users*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Log Users</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview {{ Request::is('*configurations*') || Request::is('*regions*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
@@ -118,13 +118,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="{{ route('configurations.index') }}" class="nav-link {{ Request::is('*configurations*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Project</p>
+                  <p>Configurations</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
+              <a href="{{ route('regions.index') }}" class="nav-link {{ Request::is('*regions*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Region</p>
                 </a>

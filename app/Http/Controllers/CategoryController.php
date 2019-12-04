@@ -22,7 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(15);
 
         return view('categories.index')->withCategories($categories);
     }
@@ -136,6 +136,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|max:50'
+        ]);
+
         $category = Category::find($id);
         $user_name = Auth::user()->username;
 
@@ -209,9 +213,11 @@ class CategoryController extends Controller
 
         $user_name = Auth::user()->username;
 
-        $myFile = public_path(). '/images/categories/' .$category->image;
-        if (is_file($myFile)) {
-            unlink($myFile);
+        if (!empty($category->image)) {
+            $myFile = public_path(). '/images/categories/' .$category->image;
+            if (is_file($myFile)) {
+                unlink($myFile);
+            }
         }
 
         $category->delete();

@@ -24,7 +24,7 @@
                             <td>{{ $role->role_name }}</td>
                             <td>{{ date('d M Y H:i:s', strtotime($role->created_at)) }}</td>
                             <td>
-                                <a href="{{ url("roles/$role->id/edit") }}" class="btn btn-sm btn-success">
+                                <a href="{{ url("dashboard/roles/$role->id/edit") }}" class="btn btn-sm btn-success">
                                     <i class="fa fa-edit"></i> Edit
                                 </a> |
 
@@ -40,6 +40,7 @@
                         @php $i++; @endphp
                     @endforeach
                 </table>
+                {{ $roles->links() }}
             </div>
         </div>
     </section>

@@ -95,7 +95,7 @@ class FileController extends Controller
      */
     public function show($post_id)
     {
-        $files = File::where('post_id', $post_id)->get();
+        $files = File::where('post_id', $post_id)->paginate(15);
 
         return view('files.show')->withFiles($files)->with('post_id', $post_id);
     }

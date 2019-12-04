@@ -36,7 +36,7 @@
                             <td>{{ date('d M Y H:i:s', strtotime($post->created_at)) }}</td>
                             <td><a href="{{ route('files.show', $post->id) }}" class="btn btn-primary">Files</a></td>
                             <td>
-                                <a href="{{ url("posts/$post->id/edit") }}" class="btn btn-sm btn-success">
+                                <a href="{{ url("dashboard/posts/$post->id/edit") }}" class="btn btn-sm btn-success">
                                     <i class="fa fa-edit"></i> Edit
                                 </a> |
 
@@ -52,6 +52,7 @@
                         @php $i++; @endphp
                     @endforeach
                 </table>
+                {{ $posts->links() }}
             </div>
         </div>
     </section>
