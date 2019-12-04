@@ -12,5 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index')->name('/');
-Route::get('/lists/{id}', 'HomeController@lists')->name('lists');
-Route::get('/page/{id}', 'HomeController@page')->name('page');
+Route::get('/lists/{slug}', 'HomeController@lists')->name('lists');
+Route::get('/detail_post/{id}', 'HomeController@detail_post')->name('detail_post');
+Route::get('/page/{slug}', 'HomeController@page')->name('page');
+Route::post('/add_comment/{id}', 'HomeController@add_comment')->name('add_comment');
