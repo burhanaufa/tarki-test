@@ -8,7 +8,7 @@
                     <h3>Roles</h3>
                 </div>
                 <div class="col-md-4" style="margin:10px 0">
-                    <a href="{{ route('roles.create') }}" class="btn btn-primary">Add role</a>
+                    <a href="{{ route('roles.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add role</a>
                 </div>
                 <table class="table table-striped">
                     <tr>

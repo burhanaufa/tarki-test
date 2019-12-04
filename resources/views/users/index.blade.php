@@ -8,7 +8,7 @@
                     <h3>Users</h3>
                 </div>
                 <div class="col-md-4" style="margin:10px 0">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary">Add User</a>
+                    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add User</a>
                 </div>
                 <table class="table table-striped">
                     <tr>
