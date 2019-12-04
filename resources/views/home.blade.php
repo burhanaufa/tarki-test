@@ -1,5 +1,62 @@
 @extends('layout')
 @section('content')
+<div id="homepage-slider" class="st-slider">
+            <input type="radio" class="cs_anchor radio" name="slider" id="play1" checked="" />
+            <input type="radio" class="cs_anchor radio" name="slider" id="slide1" />
+            <input type="radio" class="cs_anchor radio" name="slider" id="slide2" />
+            <input type="radio" class="cs_anchor radio" name="slider" id="slide3" />
+            <div class="images">
+                <div class="images-inner">
+                    <div class="image-slide">
+                        <div class="banner-w3pvt-1">
+                            <div class="overlay-wthree"></div>
+
+                        </div>
+                    </div>
+                    <div class="image-slide">
+                        <div class="banner-w3pvt-2">
+                            <div class="overlay-wthree"></div>
+                        </div>
+                    </div>
+                    <div class="image-slide">
+                        <div class="banner-w3pvt-3">
+                            <div class="overlay-wthree"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="labels">
+                <div class="fake-radio">
+                    <label for="slide1" class="radio-btn"></label>
+                    <label for="slide2" class="radio-btn"></label>
+                    <label for="slide3" class="radio-btn"></label>
+                </div>
+            </div>
+            <!-- banner-w3ls-info -->
+            <!--
+            <div class="banner-w3ls-info">
+                <div class="content-bg-1 one-bg">
+                    <span class="fa fa-lightbulb-o" aria-hidden="true"></span>
+                    <h3 class="ban-text">
+                        Computer Based Exam
+                    </h3>
+                </div>
+                <div class="content-bg-1 two-bg">
+                    <span class="fa fa-book"></span>
+                    <h3 class="ban-text">
+                        Penerimaan Siswa baru
+                    </h3>
+                </div>
+                <div class="content-bg-1 third-bg">
+                    <span class="fa fa-shield" aria-hidden="true"></span>
+                    <h3 class="ban-text">
+                        Certification Awarded
+                    </h3>
+                </div>
+            </div>
+            -->
+            <!-- //banner-w3ls-info -->
+        </div>
     <section class="about py-5">
         <div class="container py-md-5">
             <div class="about-w3ls-info text-center mx-auto">
@@ -229,105 +286,4 @@
         </div>
     </div>
     <!-- //gallery -->
-
-    <!-- /apply-->
-    <section class="apply-main py-5" id="apply">
-        <div class="container py-md-5">
-            <div class="row">
-                <div class="col-lg-7 apply-info px-lg-5">
-                    <h3 class="tittle-wthree apply-hd text-white mb-lg-5 mb-3">Hurry Up !</h3>
-                    <div class="row wthree-stats-inf">
-                        <div class="col-6 stats_w3pvt_counter_grid mt-3">
-                            <div class="d-flex">
-                                <p class="para-w3pvt">Daftarkan dirimu dan dapatkan kesempatan bekerja dan belajar di Yayasan Tarakanita</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="col-lg-5 login p-md-5 p-4 mx-auto bg-white mw-100">
-                    <h5 class="text-center mb-4">Career</h5>
-                    <form action="#" method="post">
-                        <div class="form-group">
-                            <label>First name</label>
-
-                            <input type="text" class="form-control" id="validationDefault01" placeholder="" required="">
-                        </div>
-                        <div class="form-group">
-                            <label>Last name</label>
-                            <input type="text" class="form-control" id="validationDefault02" placeholder="" required="">
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label class="mb-2">Password</label>
-                            <input type="password" class="form-control" id="password1" placeholder="" required="">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary submit mb-4">Register</button>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //apply -->
-    <!-- testimonials -->
-    <section class="testimonials py-5" id="test">
-        <div class="container py-xl-5 py-lg-3">
-            <h3 class="tittle-wthree text-center">Testimonials</h3>
-            <p class="sub-tittle text-center mt-4 mb-sm-5 mb-4">Sed do eiusmod tempor incididunt ut labore et dolore
-                magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-            <div class="row">
-                <div class="col-lg-4 testimonials_grid mt-3">
-                    <div class="p-lg-5 p-4 testimonials-gd-vj">
-                        <p class="sub-test"><span class="fa fa-quote-left s4" aria-hidden="true"></span> Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod possimus, omnis voluptas.
-                        </p>
-                        <div class="row mt-4">
-                            <div class="col-3 testi-img-res">
-                                <img src="{{ asset('assets/images/te1.jpg')}}" alt=" " class="img-fluid" />
-                            </div>
-                            <div class="col-9 testi_grid">
-                                <h5 class="mb-2">Thomas Carl</h5>
-                                <p>Add xxxx</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 testimonials_grid mt-3">
-                    <div class="p-lg-5 p-4 testimonials-gd-vj">
-                        <p class="sub-test"><span class="fa fa-quote-left s4" aria-hidden="true"></span>Quisque sagittis lacus eu lorem , cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod possimus.
-                        </p>
-                        <div class="row mt-4">
-                            <div class="col-3 testi-img-res">
-                                <img src="{{ asset('assets/images/te2.jpg')}}" alt=" " class="img-fluid" />
-                            </div>
-                            <div class="col-9 testi_grid">
-                                <h5 class="mb-2">Adam Ster</h5>
-                                <p>Add xxxx</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 testimonials_grid mt-3">
-                    <div class="p-lg-5 p-4 testimonials-gd-vj">
-                        <p class="sub-test"><span class="fa fa-quote-left s4" aria-hidden="true"></span> Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod possimus, omnis voluptas.
-                        </p>
-                        <div class="row mt-4">
-                            <div class="col-3 testi-img-res">
-                                <img src="{{ asset('assets/images/te3.jpg')}}" alt=" " class="img-fluid" />
-                            </div>
-                            <div class="col-9 testi_grid">
-                                <h5 class="mb-2">Dane Walker</h5>
-                                <p>Add xxxx</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
     @endsection
