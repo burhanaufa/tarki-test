@@ -8,7 +8,7 @@
                     <h3>Categories</h3>
                 </div>
                 <div class="col-md-4" style="margin:10px 0">
-                    <a href="{{ route('categories.create') }}" class="btn btn-primary">Add Category</a>
+                    <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Category</a>
                 </div>
                 <table class="table table-striped">
                     <tr>

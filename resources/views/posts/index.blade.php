@@ -8,7 +8,7 @@
                     <h3>Posts</h3>
                 </div>
                 <div class="col-md-4" style="margin:10px 0">
-                    <a href="{{ route('posts.create') }}" class="btn btn-primary">Add Post</a>
+                    <a href="{{ route('posts.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Post</a>
                 </div>
                 <table class="table table-striped">
                     <tr>
@@ -18,6 +18,7 @@
                         <th>Status</th>
                         <th>Created At</th>
                         <th>File</th>
+                        <th>Comments</th>
                         <th>Action</th>
                     </tr>
                     @php $i = 1; @endphp
@@ -34,7 +35,8 @@
                                 <td>Unpublish</td>
                             @endif
                             <td>{{ date('d M Y H:i:s', strtotime($post->created_at)) }}</td>
-                            <td><a href="{{ route('files.show', $post->id) }}" class="btn btn-primary">Files</a></td>
+                            <td><a href="{{ route('files.show', $post->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-file"></i> Files</a></td>
+                            <td><a href="{{ route('comments.index', $post->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-comment"></i></a></td>
                             <td>
                                 <a href="{{ url("dashboard/posts/$post->id/edit") }}" class="btn btn-sm btn-success">
                                     <i class="fa fa-edit"></i> Edit

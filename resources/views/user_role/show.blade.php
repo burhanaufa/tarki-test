@@ -8,7 +8,7 @@
                     <h3>Files</h3>
                 </div>
                 <div class="col-md-4" style="margin:10px 0">
-                    <a href="{{ route('files.create', $post_id) }}" class="btn btn-primary">Add file</a>
+                    <a href="{{ route('files.create', $post_id) }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add file</a>
                 </div>
                 <table class="table table-striped">
                     <tr>

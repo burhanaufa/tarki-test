@@ -24,4 +24,10 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/user_role/store', 'UserRoleController@store')->name('user_role.store');
     Route::delete('/files/destroy/{id}/{post_id}', 'FileController@destroy')->name('files.destroy');
     Route::get('/log-users', 'LogUserController@index')->name('log-users');
+
+    /*============ Comments ===============*/
+    Route::get('/comments/{id}', 'CommentController@index')->name('comments.index');
+    Route::get('/comments/{id}/edit', 'CommentController@edit')->name('comments.edit');
+    Route::put('/comments/{id}/update', 'CommentController@update')->name('comments.update');
+    Route::delete('/comments/{id}/destroy', 'CommentController@destroy')->name('comments.destroy');
 });
