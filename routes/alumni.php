@@ -12,3 +12,4 @@
 */
 Route::get('/alumni', 'AlumniController@index')->name('alumni');
 Route::post('/alumni/login', 'AlumniController@login')->name('alumni-login');
+Route::get('/alumni/dashboard', 'AlumniController@dashboard')->name('alumni-dashboard');
