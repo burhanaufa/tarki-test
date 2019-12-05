@@ -32,7 +32,8 @@
               </p>
             </a>
           </li>
-            <li class="nav-item has-treeview {{ Request::is('*categories*') || Request::is('*posts*') || Request::is('*files*') ? 'menu-open' : '' }}">
+            <li class="nav-item has-treeview {{ Request::is('*categories*') || Request::is('*posts*')
+                                                || Request::is('*comments*') || Request::is('*files*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -48,7 +49,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('dashboard/posts') }}" class="nav-link {{ Request::is('*posts*') || Request::is('*files*') ? 'active' : '' }}">
+                <a href="{{ url('dashboard/posts') }}" class="nav-link {{ Request::is('*posts*') || Request::is('*comments*') || Request::is('*files*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Posts</p>
                 </a>

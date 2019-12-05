@@ -30,6 +30,14 @@
                                 </div>
                             @endforeach
                         </div>
+                        <div class="row">
+                            <label for="region_id">Region</label>
+                            <select name="region_id" id="region_id" class="form-control">
+                                @foreach ($regions as $region)
+                                    <option value="{{ $region->id }}">{{ $region->region_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary btn-block" style="margin:10px 0">Submit</button>
                     </form>
                 </div>
