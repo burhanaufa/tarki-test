@@ -28,6 +28,6 @@ Route::prefix('dashboard')->group(function () {
     /*============ Comments ===============*/
     Route::get('/comments/{id}', 'CommentController@index')->name('comments.index');
     Route::get('/comments/{id}/edit', 'CommentController@edit')->name('comments.edit');
-    Route::put('/comments/{id}/update', 'CommentController@update')->name('comments.update');
+    Route::patch('/comments/{id}/update', 'CommentController@update')->name('comments.update');
     Route::delete('/comments/{id}/destroy', 'CommentController@destroy')->name('comments.destroy');
 });

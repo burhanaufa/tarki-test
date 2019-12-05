@@ -56,7 +56,18 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'reply' => 'required'
+        ]);
+
+        $comment = Comment::find($id);
+        $comment->comment_reply = $request->reply;
+        if ($comment->save()) {
+            return redirect("dashboard/comments/$comment->post_id");
+        } else {
+            return redirect("dashboard/comments/$comment->id/edit")->with('error', 'Failed to save comment');
+        }
+
     }
 
     /**

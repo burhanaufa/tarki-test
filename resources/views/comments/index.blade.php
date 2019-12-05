@@ -25,16 +25,23 @@
                             <td>{{ $comment->full_name }}</td>
                             <td>{{ $comment->email }}</td>
                             <td>{{ $comment->blog }}</td>
-                            <td>{{ strlen($comment->comment) > 50 ? substr($comment->comment,0,50)."..." : $comment->comment }}</td>
                             <td>
-                                <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-sm btn-primary">Balas</a>
+                                <p>
+                                    {{ strlen($comment->comment) > 50 ? substr($comment->comment,0,50)."..." : $comment->comment }}
+                                </p>
+                                @if (!empty($comment->comment_reply))
+                                    <blockquote class="text-danger">
+                                        {!! strlen($comment->comment_reply) > 50 ? substr($comment->comment_reply,0,50)."..." : $comment->comment_reply !!}
+                                    </blockquote>
+                                @endif
                             </td>
+                            @if (empty($comment->comment_reply))
+                                <td><a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-sm btn-primary">Balas</a></td>
+                            @else
+                                <td>-</td>
+                            @endif
                             <td>{{ date('d M Y H:i:s', strtotime($comment->created_at)) }}</td>
                             <td>
-                                <a href="{{ url("dashboard/comments/$comment->id/edit") }}" class="btn btn-sm btn-success">
-                                    <i class="fa fa-edit"></i> Edit
-                                </a> |
-
                                 <form style="display:inline;" action="{{ route('comments.destroy', $comment->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
