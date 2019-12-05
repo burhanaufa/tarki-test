@@ -15,7 +15,7 @@
           <h4><b>{{$post->title}}</b></h4>
           <h6>{{$post->created_at}}</h6>
           <p>
-            {{$post->headline}}
+            {!!$post->headline!!}
           </p>
           <a href="{{route('detail_post', $post->posts_id)}}">
           <button class="btn btn-success">Read More</button>

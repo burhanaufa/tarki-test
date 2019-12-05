@@ -18,7 +18,11 @@ class HomeController extends Controller
      	$data['top_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent', null)->get();
         $data['sub_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent','!=', null)->get();
         $data['page'] = Post::select('*', 'posts.id as posts_id')->join('categories', 'categories.id','=','posts.category_id')->where('slug', $slug)->first();
+        if($data['page'] != null){
         $data['files'] = File::where('post_id', $data['page']->posts_id)->get();
+    	}else{
+     		$data['files'] = null;
+     	}
         return view('page',$data);
     }
      public function lists($slug){
@@ -32,19 +36,27 @@ class HomeController extends Controller
      	$data['top_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent', null)->get();
         $data['sub_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent','!=', null)->get();
         $data['post'] = Post::select('*', 'posts.id as posts_id')->join('categories', 'categories.id','=','posts.category_id')->where('posts.id', $id)->first();
+        $data['all_comments'] = Comment::where('reply_id', '!=',null)->get();
+        if($data['post'] != null){
          $data['files'] = File::where('post_id', $data['post']['posts_id'])->get();
+         $data['comments'] = Comment::where('post_id', $data['post']['posts_id'])->where('reply_id', null)->get();
+     	}else{
+     		$data['files'] = null;
+     		$data['comments'] = null;
+     	}
         return view('detail-post',$data);
     }
     public function add_comment(Request $request, $id){
 
         if(Comment::create([
-            'full_name' => $request->full_name,
+            'post_id' => $id,
             'email' => $request->email,
+            'full_name' => $request->full_name,
             'blog' => $request->blog,
             'comment' => $request->comment,
-            'post_id' => $id
+            'created_by' => 1
         ])){
-            return  back()->with('success','Data sukses ditambahkan !');
+            return  back()->with('success','Komentar sukses ditambahkan !');
         }else{
             return back()->withErrors(['Ada kesalahan pada saat Input.']);
         }

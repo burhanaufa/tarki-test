@@ -8,17 +8,20 @@
 <section class="single-w3ls-page py-5" style="margin-top:-60px">
     <div class="container py-md-5">
         <div class="content-sing-w3pvt px-lg-5">
+            @if($files != null)
             @foreach($files as $file)
             @if($file->file_format == 'img')
             <img src="{{  asset('/images/posts/' .$file->file_name) }}" class="img-fluid" alt="user-image">
             <?php break; ?>
             @endif
             @endforeach
+            @endif
             <h4 class="title-wthree my-3">{{$page['title']}}</h4>
-            <p>{{$page['description']}}</p>
+            <p>{!!$page['description']!!}</p>
 
             <hr>
             <div class="row about-w3pvt-top mt-2">
+                @if($files != null)
                 @foreach($files as $file)
                 <div class="col-lg-4 about-img">
                     <div class="row">
@@ -43,7 +46,7 @@
                           </div>
                       </div>
                       @endforeach
-
+                      @endif
                   </div>
               </div>
 
