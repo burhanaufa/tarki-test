@@ -91,19 +91,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('dashboard/users') }}" class="nav-link {{ Request::is('*/users*') ? 'active' : '' }}" class="nav-link">
+                <a href="{{ url('dashboard/users') }}" class="nav-link {{ Request::is('*/users*') || Request::is('*user_role*') ? 'active' : '' }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('dashboard/roles') }}" class="nav-link {{ Request::is('*roles*') || Request::is('*user_role*') ? 'active' : '' }}">
+                <a href="{{ url('dashboard/roles') }}" class="nav-link {{ Request::is('*roles*') || Request::is('*permission_role*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Roles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('dashboard/permissions') }}" class="nav-link {{ Request::is('*permissions*') || Request::is('*permission_role*') ? 'active' : '' }}">
+                <a href="{{ url('dashboard/permissions') }}" class="nav-link {{ Request::is('*permissions*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Permissions</p>
                 </a>

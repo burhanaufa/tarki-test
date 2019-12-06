@@ -21,10 +21,16 @@ Route::prefix('dashboard')->group(function () {
     ]);
 
     Route::get('/files/create/{post_id}', 'FileController@create')->name('files.create');
-    Route::get('/user_role/create/{user_id}', 'UserRoleController@create')->name('user_role.create');
-    Route::post('/user_role/store', 'UserRoleController@store')->name('user_role.store');
     Route::delete('/files/destroy/{id}/{post_id}', 'FileController@destroy')->name('files.destroy');
     Route::get('/log-users', 'LogUserController@index')->name('log-users');
+
+    /*============ User Role ===============*/
+    Route::get('/user_role/create/{user_id}', 'UserRoleController@create')->name('user_role.create');
+    Route::post('/user_role/store', 'UserRoleController@store')->name('user_role.store');
+
+    /*============ Permission Role ===============*/
+    Route::get('/permission_role/create/{user_id}', 'PermissionRoleController@create')->name('permission_role.create');
+    Route::post('/permission_role/store', 'PermissionRoleController@store')->name('permission_role.store');
 
     /*============ Comments ===============*/
     Route::get('/comments/{id}', 'CommentController@index')->name('comments.index');
