@@ -80,7 +80,8 @@
             </ul>
           </li>
           <li class="nav-item has-treeview {{ Request::is('*users*') || Request::is('*roles*')
-                                                || Request::is('*log-users*') || Request::is('*user_role*') ? 'menu-open' : '' }}">
+                                                || Request::is('*log-users*') || Request::is('*user_role*')
+                                                || Request::is('*permissions*') || Request::is('*permission_role*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -99,6 +100,12 @@
                 <a href="{{ url('dashboard/roles') }}" class="nav-link {{ Request::is('*roles*') || Request::is('*user_role*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Roles</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('dashboard/permissions') }}" class="nav-link {{ Request::is('*permissions*') || Request::is('*permission_role*') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Permissions</p>
                 </a>
               </li>
               <li class="nav-item">
