@@ -34,16 +34,17 @@ class PermissionRoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'role_id' => 'required|integer',
-            'permissions' => 'required|array'
+            'role_id' => 'required|integer'
         ]);
 
         $user_name = Auth::user()->username;
 
         $permissions = array();
 
-        foreach ($request->permissions as $permission) {
-            $permissions[$permission]['created_by'] = Auth::user()->id;
+        if ($request->has('permissions')) {
+            foreach ($request->permissions as $permission) {
+                $permissions[$permission]['created_by'] = Auth::user()->id;
+            }
         }
 
         $role = Role::find($request->role_id);

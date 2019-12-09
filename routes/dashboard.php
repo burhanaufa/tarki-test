@@ -9,7 +9,6 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('posts', 'PostController');
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
-    Route::resource('permissions', 'PermissionController');
     Route::resource('regions', 'RegionController');
 
     Route::resource('files', 'FileController')->except([
@@ -37,4 +36,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/comments/{id}/edit', 'CommentController@edit')->name('comments.edit');
     Route::patch('/comments/{id}/update', 'CommentController@update')->name('comments.update');
     Route::delete('/comments/{id}/destroy', 'CommentController@destroy')->name('comments.destroy');
+
+    /*============ Permissions ===============*/
+    Route::get('/permissions', 'PermissionController@index')->name('permissions.index');
 });

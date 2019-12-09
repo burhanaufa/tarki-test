@@ -19,16 +19,23 @@
                         @csrf
                         <input type="hidden" name="role_id" value="{{ $role_id }}">
                         <div class="row">
-                            @foreach ($permissions as $permission)
-                                <div class="col-md-4">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input"
-                                        value="{{ $permission->id }}" id="{{ $permission->name }}"
-                                        name="permissions[]" {{ in_array($permission->id, $permission_id) ? 'checked' : '' }}>
-                                        <label class="custom-control-label" for="{{ $permission->name }}">{{ $permission->name }}</label>
-                                    </div>
-                                </div>
-                            @endforeach
+                            <div class="col-md-12">
+                                <table class="table table-striped">
+                                    @foreach ($permissions as $permission)
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        value="{{ $permission->id }}" id="{{ $permission->name }}"
+                                                        name="permissions[]" {{ in_array($permission->id, $permission_id) ? 'checked' : '' }}>
+                                                        <label class="custom-control-label" for="{{ $permission->name }}">{{ $permission->name }}</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    @endforeach
+                                </table>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block" style="margin:10px 0">Submit</button>
                     </form>
