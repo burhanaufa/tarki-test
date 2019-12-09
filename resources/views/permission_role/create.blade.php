@@ -3,7 +3,7 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            <h3>Permission Role</h3>
+            <h3>Permission Role : {{ Auth::user()->full_name }}</h3>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
