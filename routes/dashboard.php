@@ -7,6 +7,9 @@ Route::get('/dashboard', 'DashboardController@index')->name('home');
 Route::prefix('dashboard')->group(function () {
     Route::resource('categories', 'CategoryController');
     Route::resource('posts', 'PostController');
+});
+
+Route::group(['middleware' => ['auth', 'role:1'], 'prefix' => 'dashboard'], function () {
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
     Route::resource('regions', 'RegionController');

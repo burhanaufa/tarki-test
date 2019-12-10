@@ -1,3 +1,11 @@
+@php
+    $roles = array();
+@endphp
+@foreach (Auth::user()->roles as $key => $val)
+    @php
+        $roles[$key] = $val->id;
+    @endphp
+@endforeach
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -56,89 +64,91 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Approval
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Posts</p>
+          @if (in_array(1, $roles))
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                    Approval
+                    <i class="right fas fa-angle-left"></i>
+                </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Comments</p>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="pages/charts/flot.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Posts</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/charts/inline.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Comments</p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview {{ Request::is('*users*') || Request::is('*roles*')
+                        || Request::is('*log-users*') || Request::is('*user_role*')
+                        || Request::is('*permissions*') || Request::is('*permission_role*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                    Management Users
+                    <i class="fas fa-angle-left right"></i>
+                    </p>
                 </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item has-treeview {{ Request::is('*users*') || Request::is('*roles*')
-                                                || Request::is('*log-users*') || Request::is('*user_role*')
-                                                || Request::is('*permissions*') || Request::is('*permission_role*') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Management Users
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('dashboard/users') }}" class="nav-link {{ Request::is('*/users*') || Request::is('*user_role*') ? 'active' : '' }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Users</p>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ url('dashboard/users') }}" class="nav-link {{ Request::is('*/users*') || Request::is('*user_role*') ? 'active' : '' }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('dashboard/roles') }}" class="nav-link {{ Request::is('*roles*') || Request::is('*permission_role*') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Roles</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('dashboard/permissions') }}" class="nav-link {{ Request::is('*permissions*') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Permissions</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('log-users') }}" class="nav-link {{ Request::is('*log-users*') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Log Users</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview {{ Request::is('*configurations*') || Request::is('*regions*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-cog"></i>
+                <p>
+                    Settings
+                    <i class="fas fa-angle-left right"></i>
+                </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('dashboard/roles') }}" class="nav-link {{ Request::is('*roles*') || Request::is('*permission_role*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Roles</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('dashboard/permissions') }}" class="nav-link {{ Request::is('*permissions*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Permissions</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('log-users') }}" class="nav-link {{ Request::is('*log-users*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Log Users</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item has-treeview {{ Request::is('*configurations*') || Request::is('*regions*') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                Settings
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('configurations.index') }}" class="nav-link {{ Request::is('*configurations*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Configurations</p>
-                </a>
-              </li>
-              <li class="nav-item">
-              <a href="{{ route('regions.index') }}" class="nav-link {{ Request::is('*regions*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Region</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('configurations.index') }}" class="nav-link {{ Request::is('*configurations*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Configurations</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ route('regions.index') }}" class="nav-link {{ Request::is('*regions*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Region</p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+            @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
