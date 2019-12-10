@@ -34,14 +34,7 @@ class CheckRoleUser
     public function handle($request, Closure $next, $role)
     {
         if (! $request->user()->hasRole($role)) {
-            $response=[
-                'error'=>true,
-                'message'=>"You are not authorized user"
-            ];
-
-            $status = 401;
-
-            return response()->json($response, $status);
+            return redirect()->route('errors.unauthorized');
         }
 
         return $next($request);
