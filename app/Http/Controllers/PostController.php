@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\File;
@@ -65,6 +66,7 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
             $post->headline = $request->headline;
             $post->description = $request->description;
+            $post->slug = Str::slug($request->title);
             $post->created_by = Auth::user()->id;
             $post->save();
 
@@ -73,7 +75,7 @@ class PostController extends Controller
             {
                 $ext = $file->getClientOriginalExtension();
                 $code = base64_encode($file_idx. '' .date('Y-m-d H:i:s'));
-                $name = substr($code. '' .$file->getClientOriginalName(), -50, 50);
+                $name = Str::slug(substr($code. '' .$file->getClientOriginalName(), -50, 50));
                 $file->move(public_path().'/images/posts/', $name);
 
                 $new_file = new File;
@@ -164,6 +166,7 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
             $post->headline = $request->headline;
             $post->description = $request->description;
+            $post->slug = Str::slug($request->title);
             $post->created_by = Auth::user()->id;
             $post->save();
 
@@ -173,7 +176,7 @@ class PostController extends Controller
                 {
                     $ext = $file->getClientOriginalExtension();
                     $code = base64_encode($file_idx. '' .date('Y-m-d H:i:s'));
-                    $name = substr($code. '' .$file->getClientOriginalName(), -50, 50);
+                    $name = Str::slug(substr($code. '' .$file->getClientOriginalName(), -50, 50));
                     $file->move(public_path().'/images/posts/', $name);
 
                     $new_file = new File;
