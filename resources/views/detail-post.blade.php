@@ -106,7 +106,7 @@
                               <h4>Admin</h4>
                               <ul class="my-2">
                               </ul>
-                              <p>{{$comment->comment_reply}}</p>
+                              <p>{!!$comment->comment_reply!!}</p>
                           </div>
                           @endif
                     </div>
