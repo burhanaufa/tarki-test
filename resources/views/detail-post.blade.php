@@ -98,9 +98,11 @@
                             <p>{{$comment->comment}}</p>
                         </div>
                     </div>
-                    <div class="media mt-sm-5 mt-3 ml-5">
+                    <div class="media mt-sm-5 mt-3 ml-5" style="margin-top: 0px !important;margin-left: 0px !important">
                           @if($comment->comment_reply !=  null)
                           <div class="media-body comments-grid-right">
+                            <div style="height: 80px;width: 30px;background-color: #8fc9f3;float: left;margin-right: 5px">
+                            </div>
                               <h4>Admin</h4>
                               <ul class="my-2">
                               </ul>
@@ -124,7 +126,7 @@
                     </div>
                     <div class="form-group mt-4">
                         <label>Email</label>
-                        <input type="text" class="form-control" name="email" placeholder="" required="">
+                        <input type="email" class="form-control" name="email" placeholder="" required="">
                     </div>
                     <div class="form-group mt-4">
                         <label>Blog ( Optional )</label>

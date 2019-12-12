@@ -1,9 +1,10 @@
   @extends('layout')
   @section('content')
   <section>
-    <div class="py-sm-12" style="height: 350px;overflow: hidden;">
-      <img style="width: 100%" src="{{ asset('/images/categories/' .$page['image']) }}" alt=""> 
-    </div>
+       <div class="py-sm-12" style="overflow: hidden;background-image: url({{ '../../images/categories/' .$page['image'] }})">
+      <div class="overlay-innerpage" style="height: 25em">
+     </div>
+   </div>
   </section>
   <section class="single-w3ls-page py-5" style="margin-top:-60px">
     <div class="container py-md-5">
