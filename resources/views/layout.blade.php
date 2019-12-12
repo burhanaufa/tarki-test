@@ -61,9 +61,9 @@
                         @endforeach
                         @if($i == 1)
                         <li>
-                            <label for="drop-{{$i}}" class="toggle">{{$item->category_name}} <span class="fa fa-angle-down" aria-hidden="true"></span> </label>
+                            <label for="drop-{{$j}}" class="toggle">{{$item->category_name}} <span class="fa fa-angle-down" aria-hidden="true"></span> </label>
                             <a href="#">{{$item->category_name}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-                            <input type="checkbox" id="drop-{{$i}}" />
+                            <input type="checkbox" id="drop-{{$j}}" />
                             <ul>
                                 @foreach ($sub_menu_parent as $item2)
                                 @if($item->id == $item2->parent)

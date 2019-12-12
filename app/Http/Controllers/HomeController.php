@@ -17,7 +17,7 @@ class HomeController extends Controller
      public function page($slug){
      	$data['top_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent', null)->get();
         $data['sub_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent','!=', null)->get();
-        $data['page'] = Post::select('*', 'posts.id as posts_id')->join('categories', 'categories.id','=','posts.category_id')->where('slug', $slug)->first();
+        $data['page'] = Post::select('*', 'posts.id as posts_id')->join('categories', 'categories.id','=','posts.category_id')->where('slug', $slug)->where('status', '1')->first();
         if($data['page'] != null){
         $data['files'] = File::where('post_id', $data['page']->posts_id)->get();
     	}else{

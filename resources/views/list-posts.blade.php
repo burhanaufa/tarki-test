@@ -14,13 +14,13 @@
       <div class="py-sm-12" style="margin-bottom:40px;padding-top: 30px;padding-left: 5px;padding-right: 5px">
        
           <div class="row">
-          <div class="py-sm-4">
+          <div class="col-sm-4">
              @if($files != null)
             @foreach($files as $file)
             @if($file->post_id == $post->posts_id)
             @if($file->file_format == 'img')
              <div style="text-align: center;width: 100%">
-            <img src="{{  asset('/images/posts/' .$file->file_name) }}" style="width: 100px" alt="user-image">
+            <img src="{{  asset('/images/posts/' .$file->file_name) }}" style="width: 80%" alt="user-image">
             </div>
             <?php break; ?>
             @endif
@@ -28,7 +28,7 @@
             @endforeach
             @endif
           </div>
-          <div class="py-sm-8" style="padding:5px 15px">
+          <div class="col-sm-8" style="padding:5px 15px">
           <h4><b>{{$post->title}}</b></h4>
           <h6>{{$post->created_at}}</h6>
           <p>

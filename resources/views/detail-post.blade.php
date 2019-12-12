@@ -31,7 +31,7 @@
           @foreach($files as $file)
                 @if($file->file_format == 'img')
                   @if($j == 1)
-          <div class="col-lg-4 about-img">
+          <div class="col-lg-4 gal-img">
               <div style="text-align: center">
                  <a href="#gal<?= $i ?>"> 
                   <img src="{{  asset('/images/posts/' .$file->file_name) }}" class="img-fluid" alt="user-image"> </a>
