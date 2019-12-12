@@ -47,7 +47,8 @@
                         <h4> <a class="navbar-brand" href="index.html">Tarakanita</a>
                         </h4>
                     </div>
-
+                    <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop" />
                     <ul class="menu mr-auto">
                         <?php $i = 0; $j=0; ?>
                         <li class="active"><a href="#">Home</a></li>
@@ -91,7 +92,7 @@
                         @endforeach
                         @endif
                         <li class="log-vj ml-lg-5"><a href="{{route('alumni')}}"><span class="fa fa-user-circle-o" aria-hidden="true"></span> Portal Alumni</a>
-                        <li><a href="#"><img src="{{ asset('assets/images/LOGO_TARKI_PNG.png')}}" style="width:30px"></a></li>
+                      <!--   <li><a href="#"><img src="{{ asset('assets/images/LOGO_TARKI_PNG.png')}}" style="width:30px"></a></li> -->
                     </ul>
                 </nav>
                 <!-- //nav -->

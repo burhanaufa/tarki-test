@@ -1,9 +1,11 @@
   @extends('layout')
   @section('content')
   <section>
-    <div class="py-sm-12" style="height: 350px;overflow: hidden;">
-      <img style="width: 100%" src="{{ asset('/images/categories/' .$post['image']) }}" alt=""> 
-  </div>
+    <div class="py-sm-12" style="overflow: hidden;background-image: url({{ '../../images/categories/' .$post['image'] }})">
+      <div class="overlay-innerpage" style="height: 25em">
+     </div>
+   </div>
+
 </section>
 <section class="single-w3ls-page py-5" style="margin-top:-60px">
     <div class="container py-md-5">
@@ -11,44 +13,64 @@
           @if($files != null)
             @foreach($files as $file)
             @if($file->file_format == 'img')
+             <div style="text-align: center;width: 100%">
             <img src="{{  asset('/images/posts/' .$file->file_name) }}" class="img-fluid" alt="user-image">
+            </div>
             <?php break; ?>
             @endif
             @endforeach
             @endif
             <h4 class="title-wthree my-3">{{$post['title']}}</h4>
-            <p>{!!$post['description']!!}</p>
+            <p style="text-align: justify;">{!!$post['description']!!}</p>
 
             <hr>
-            <div class="row about-w3pvt-top mt-2">
-                @foreach($files as $file)
-                <div class="col-lg-4 about-img">
-                    <div class="row">
-                        <div class="col" style="text-align: center">
-                          @if($files != null)
-                            @if($file->file_format == 'img')
-                            <img src="{{  asset('/images/posts/' .$file->file_name) }}" class="img-fluid" alt="user-image">
-                            @elseif($file->file_format == 'vid')
-                            <video width="320" height="240" controls>
-                              <source src="{{asset('/images/posts/' .$file->file_name)}}" type="video/mp4">
-                                <source src="{{asset('/images/posts/' .$file->file_name)}}" type="video/ogg">
-                                    <source src="{{asset('/images/posts/' .$file->file_name)}}" type="video/webm">
-                                      Your browser does not support the video tag.
-                                  </video> 
-                                  @else
-                                  <a href="{{asset('/images/posts/' .$file->file_name)}}" >
-                                  <img src="{{  asset('assets/images/docx.png') }}" style="width: 240px;height: 240px">
-                                  <br>
-                                  {{$file->file_name}}
-                              </a>
-                                  @endif
-                                  @endif
-                              </div>
-                          </div>
+          <div class="gallery py-5 text-center">
+          <div class="row">
+          @if($files != null)
+          <?php $i = 1;$j = 0; ?>
+          @foreach($files as $file)
+                @if($file->file_format == 'img')
+                  @if($j == 1)
+          <div class="col-lg-4 about-img">
+              <div style="text-align: center">
+                 <a href="#gal<?= $i ?>"> 
+                  <img src="{{  asset('/images/posts/' .$file->file_name) }}" class="img-fluid" alt="user-image"> </a>
+                  <div id="gal<?= $i ?>" class="pop-overlay animate">
+                      <div class="popup">
+                          <img src="{{ asset('/images/posts/' .$file->file_name)}}" alt="Popup Image" class="img-fluid" />
+                          <a class="close" href="#gallery">&times;</a>
                       </div>
-                      @endforeach
-
                   </div>
+                </div>
+            </div>
+                  @endif
+                  <?php $j =1; $i++; ?>
+                @elseif($file->file_format == 'vid')
+          <div class="col-lg-4 about-img">
+              <div style="text-align: center">
+                <video width="320" height="240" controls>
+                  <source src="{{asset('/images/posts/' .$file->file_name)}}" type="video/mp4" />
+                    <source src="{{asset('/images/posts/' .$file->file_name)}}" type="video/ogg" />
+                      <source src="{{asset('/images/posts/' .$file->file_name)}}" type="video/webm" />
+                        Your browser does not support the video tag.
+                      </video> 
+                    </div>
+                  </div>
+                      @else
+                       <div class="col-lg-4 about-img">
+              <div style="text-align: center">
+                      <a href="{{asset('/images/posts/' .$file->file_name)}}" >
+                        <img src="{{  asset('assets/images/docx.png') }}" style="width: 240px;height: 240px">
+                        <br>
+                        {{$file->file_name}}
+                      </a>
+                    </div>
+                </div>
+                      @endif
+                @endforeach
+                @endif
+              </div>
+              </div>
               <hr>
                <div class="comments my-5" style="margin-top: 50px">
                 @if ($errors->any())
@@ -77,19 +99,16 @@
                         </div>
                     </div>
                     <div class="media mt-sm-5 mt-3 ml-5">
-                        @foreach($all_comments as $all_comment)
-                          @if($all_comment->reply_id ==  $comment->id)
+                          @if($comment->comment_reply !=  null)
                           <div class="media-body comments-grid-right">
-                              <h4>{{$all_comment->full_name}}</h4>
+                              <h4>Admin</h4>
                               <ul class="my-2">
-                                  <li class="font-weight-bold">{{$all_comment->created_at}}
-                                  </li>
                               </ul>
-                              <p>{{$all_comment->comment}}</p>
+                              <p>{{$comment->comment_reply}}</p>
                           </div>
                           @endif
-                        @endforeach
                     </div>
+                    <hr>
                     @endforeach
                 </div>
             </div>
