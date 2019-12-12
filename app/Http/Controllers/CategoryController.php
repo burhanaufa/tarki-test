@@ -80,7 +80,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image_name = str_replace(' ', '-', $request->name. '.' .$image->getClientOriginalExtension());
+            $image_name = str_replace(' ', '-', strtolower($request->name. '.' .$image->getClientOriginalExtension()));
             $category->image = $image_name;
             $destination = 'images/categories';
             $image->move($destination, $image_name);
@@ -145,7 +145,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image_name = str_replace(' ', '-', $request->name. '.' .$image->getClientOriginalExtension());
+            $image_name = str_replace(' ', '-', strtolower($request->name. '.' .$image->getClientOriginalExtension()));
 
             $category->image = $image_name;
         }
