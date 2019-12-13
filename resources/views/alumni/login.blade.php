@@ -28,7 +28,7 @@
               <select class="form-control" id="regions" name="regions">
                   <option value="null">-- Pilih Wilayah --</option>
                   @foreach($regions as $item)
-                  <option value="{{$item->url}}/api/alumnilogin">{{$item->region_name}}</option>
+                  <option value="{{$item->url}}">{{$item->region_name}}</option>
                   @endforeach
               </select>
               <div class="input-group-append">

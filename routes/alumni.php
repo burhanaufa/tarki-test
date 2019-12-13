@@ -12,4 +12,7 @@
 */
 Route::get('/alumni', 'AlumniController@index')->name('alumni');
 Route::post('/alumni/login', 'AlumniController@login')->name('alumni-login');
+Route::get('/alumni/logout', 'AlumniController@logout')->name('alumni-logout');
 Route::get('/alumni/dashboard', 'AlumniController@dashboard')->name('alumni-dashboard');
+Route::get('/alumni/search_alumni', 'AlumniController@search')->name('search-alumni');
+Route::get('/alumni/detail_alumni/{nis}', 'AlumniController@detail')->name('detail-alumni');
