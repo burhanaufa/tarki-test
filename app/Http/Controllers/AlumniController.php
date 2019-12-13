@@ -21,7 +21,8 @@ class AlumniController extends Controller
         Session::flush();
         return redirect()->route('alumni');
     }
-
+    
+    //proses login//
     public function login(Request $request){
         $this->validate($request, [
             'regions' => 'required',
