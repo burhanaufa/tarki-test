@@ -75,7 +75,7 @@ class PostController extends Controller
             {
                 $ext = $file->getClientOriginalExtension();
                 $code = base64_encode($file_idx. '' .date('Y-m-d H:i:s'));
-                $name = Str::slug(substr($code. '' .$file->getClientOriginalName(), -50, 50));
+                $name = str_replace(' ', '-', strtolower(substr($code. '' .$file->getClientOriginalName(), -50, 50)));
                 $file->move(public_path().'/images/posts/', $name);
 
                 $new_file = new File;
@@ -176,7 +176,7 @@ class PostController extends Controller
                 {
                     $ext = $file->getClientOriginalExtension();
                     $code = base64_encode($file_idx. '' .date('Y-m-d H:i:s'));
-                    $name = Str::slug(substr($code. '' .$file->getClientOriginalName(), -50, 50));
+                    $name = str_replace(' ', '-', strtolower(substr($code. '' .$file->getClientOriginalName(), -50, 50)));
                     $file->move(public_path().'/images/posts/', $name);
 
                     $new_file = new File;

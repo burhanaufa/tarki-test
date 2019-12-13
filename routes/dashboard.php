@@ -9,10 +9,10 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('posts', 'PostController');
 
     Route::resource('files', 'FileController')->except([
-        'index', 'create', 'destroy'
+        'index', 'create', 'destroy', 'edit', 'update'
     ]);
     Route::get('/files/create/{post_id}', 'FileController@create')->name('files.create');
-    Route::delete('/files/destroy/{id}/{post_id}', 'FileController@destroy')->name('files.destroy');
+    Route::patch('/files/update/{post_id}', 'FileController@update')->name('files.update');
 
     /*============ Comments ===============*/
     Route::get('/comments/{id}', 'CommentController@index')->name('comments.index');
