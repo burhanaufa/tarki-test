@@ -128,13 +128,12 @@ class FileController extends Controller
 
         if ($request->has('delete')) {
             if ($request->has('deletes')) {
-                foreach ($request->deletes as $id) {
-                    $file = File::find($id);
+                foreach ($request->deletes as $file_id) {
+                    $file = File::find($file_id);
                     $file->delete();
                 }
+                return redirect()->route('files.show', $id);
             }
-
-            return redirect()->route('files.show', $id);
         }
     }
 
