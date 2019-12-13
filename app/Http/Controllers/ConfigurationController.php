@@ -18,7 +18,15 @@ class ConfigurationController extends Controller
     {
         $configurations = Configuration::paginate(15);
 
-        return view('configurations.index')->withConfigurations($configurations);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('configurations.index')->withConfigurations($configurations)->withPermissions($permissions);
     }
 
     /**

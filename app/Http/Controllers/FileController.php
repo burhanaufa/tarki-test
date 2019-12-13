@@ -102,7 +102,15 @@ class FileController extends Controller
     {
         $files = File::where('post_id', $post_id)->paginate(15);
 
-        return view('files.show')->withFiles($files)->with('post_id', $post_id);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('files.show')->withFiles($files)->with('post_id', $post_id)->withPermissions($permissions);
     }
 
     public function update(Request $request, $id)

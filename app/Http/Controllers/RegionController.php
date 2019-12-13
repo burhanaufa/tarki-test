@@ -18,7 +18,15 @@ class RegionController extends Controller
     {
         $regions = Region::paginate(15);
 
-        return view('regions.index')->withRegions($regions);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('regions.index')->withRegions($regions)->withPermissions($permissions);
     }
 
     /**

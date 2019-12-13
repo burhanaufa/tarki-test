@@ -24,7 +24,15 @@ class UserController extends Controller
     {
         $users = User::paginate(15);
 
-        return view('users.index')->withUsers($users);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('users.index')->withUsers($users)->withPermissions($permissions);
     }
 
     /**

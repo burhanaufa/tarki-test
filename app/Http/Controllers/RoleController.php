@@ -23,7 +23,15 @@ class RoleController extends Controller
     {
         $roles = Role::paginate(15);
 
-        return view('roles.index')->withRoles($roles);
+        $permissions = array();
+        $user_roles = Auth::user()->roles;
+        foreach ($user_roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('roles.index')->withRoles($roles)->withPermissions($permissions);
     }
 
     /**

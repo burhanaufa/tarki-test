@@ -26,7 +26,15 @@ class PostController extends Controller
     {
         $posts = Post::paginate(15);
 
-        return view('posts.index')->withPosts($posts);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('posts.index')->withPosts($posts)->withPermissions($permissions);
     }
 
     /**

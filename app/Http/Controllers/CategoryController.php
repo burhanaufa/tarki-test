@@ -24,7 +24,15 @@ class CategoryController extends Controller
     {
         $categories = Category::paginate(15);
 
-        return view('categories.index')->withCategories($categories);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('categories.index')->withCategories($categories)->withPermissions($permissions);
     }
 
     /**

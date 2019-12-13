@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Comment;
 
 class CommentController extends Controller
@@ -20,7 +21,15 @@ class CommentController extends Controller
     {
         $comments = Comment::where('post_id', $post_id)->paginate(15);
 
-        return view('comments.index')->withComments($comments);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('comments.index')->withComments($comments)->withPermissions($permissions);
     }
 
     /**
