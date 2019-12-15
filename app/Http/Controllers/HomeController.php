@@ -29,14 +29,14 @@ class HomeController extends Controller
      	$data['top_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent', null)->get();
         $data['sub_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent','!=', null)->get();
         $data['page'] = Category::where('slug', $slug)->first();
-        $data['posts'] = Post::select('*', 'posts.id as posts_id')->join('categories', 'categories.id','=','posts.category_id')->where('slug', $slug)->where('status', '1')->get();
+        $data['posts'] = Post::select('*', 'posts.id as posts_id','posts.slug as post_slug')->join('categories', 'categories.id','=','posts.category_id')->where('categories.slug', $slug)->where('status', '1')->get();
         $data['files'] = File::all();
         return view('list-posts',$data);
     }
-    public function detail_post($id){
+    public function detail_post($slug){
      	$data['top_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent', null)->get();
         $data['sub_menu_parent'] = Category::where('is_menu', '1')->where('is_enable', '1')->where('parent','!=', null)->get();
-        $data['post'] = Post::select('*', 'posts.id as posts_id')->join('categories', 'categories.id','=','posts.category_id')->where('posts.id', $id)->where('status', '1')->first();
+        $data['post'] = Post::select('*', 'posts.id as posts_id')->join('categories', 'categories.id','=','posts.category_id')->where('posts.slug', $slug)->where('status', '1')->first();
         if($data['post'] != null){
          $data['files'] = File::where('post_id', $data['post']['posts_id'])->get();
          $data['comments'] = Comment::where('post_id', $data['post']['posts_id'])->where('status', '1')->get();

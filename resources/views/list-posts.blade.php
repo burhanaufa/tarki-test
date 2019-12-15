@@ -34,7 +34,7 @@
           <p>
             {!!$post->headline!!}
           </p>
-          <a href="{{route('detail_post', $post->posts_id)}}">
+          <a href="{{route('detail_post', $post->post_slug)}}">
           <button class="btn btn-success">Read More</button>
         </a>
     </div>
