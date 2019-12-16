@@ -92,35 +92,45 @@
                             @if($i / 1 == 1)
                         <div class="col-sm-4 service-1-w3ls serve-gd2">
                             <div class="serve-grid mt-4">
+                                <a href="http://{{$region->url}}">
                                 <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}}</p>
+                                </a>
                             </div>
                             @endif
                              @if($i / 2 == 1)
                             <div class="serve-grid mt-4">
+                                <a href="http://{{$region->url}}">
                                 <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}} </p>
+                                </a>
                             </div>
                         </div>
                             @endif
                              @if($i / 3 == 1)
                         <div class="col-sm-4 service-1-w3ls serve-gd3">
                             <div class="serve-grid mt-4">
+                                <a href="http://{{$region->url}}">
                                 <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}}</p>
+                            </a>
                             </div>
                             @endif
 
                              @if($i / 4 == 1)
                             <div class="serve-grid mt-4">
+                                <a href="http://{{$region->url}}">
                                 <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="text-li mt-2">{{$region->region_name}} </p>
+                            </a>
                             </div>
                             @endif
                              @if($i / 5 == 1)
                             <div class="serve-grid mt-4">
+                                <a href="http://{{$region->url}}">
                                 <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}} </p>
+                            </a>
                             </div>
                         </div>
                             @endif
@@ -128,14 +138,18 @@
                              @if($i / 6 == 1)
                         <div class="col-sm-4 service-1-w3ls serve-gd2">
                             <div class="serve-grid mt-4">
+                                <a href="http://{{$region->url}}">
                                 <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}} </p>
+                            </a>
                             </div>
                             @endif
                              @if($i / 7 == 1)
                             <div class="serve-grid mt-4">
+                                <a href="http://{{$region->url}}">
                                 <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}}</p>
+                            </a>
                             </div>
                         </div>
                             @endif
