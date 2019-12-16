@@ -10,16 +10,18 @@
 <section class="single-w3ls-page py-5" style="margin-top:-60px">
     <div class="container py-md-5">
         <div class="content-sing-w3pvt px-lg-5">
-          @if($files != null)
-            @foreach($files as $file)
-            @if($file->file_format == 'img')
+       
              <div style="text-align: center;width: 100%">
-            <img src="{{  asset('/images/posts/' .$file->file_name) }}" class="img-fluid" alt="user-image">
+              <a href="#gal0"> 
+            <img src="{{  asset('/images/posts/' .$headline->file_name) }}" class="img-fluid" alt="user-image">
+            </a>
             </div>
-            <?php break; ?>
-            @endif
-            @endforeach
-            @endif
+             <div id="gal0" class="pop-overlay animate">
+                    <div class="popup">
+                        <img src="{{ asset('/images/posts/' .$headline->file_name)}}" alt="Popup Image" class="img-fluid" />
+                        <a class="close" href="#gallery">&times;</a>
+                    </div>
+                </div>
             <h4 class="title-wthree my-3">{{$post['title']}}</h4>
             <p style="text-align: justify;">{!!$post['description']!!}</p>
 
@@ -27,10 +29,10 @@
           <div class="gallery py-5 text-center">
           <div class="row">
           @if($files != null)
-          <?php $i = 1;$j = 0; ?>
+          <?php $i = 1; ?>
           @foreach($files as $file)
                 @if($file->file_format == 'img')
-                  @if($j == 1)
+            
           <div class="col-lg-4 gal-img">
               <div style="text-align: center">
                  <a href="#gal<?= $i ?>"> 
@@ -43,8 +45,7 @@
                   </div>
                 </div>
             </div>
-                  @endif
-                  <?php $j =1; $i++; ?>
+            <?php $i++; ?>
                 @elseif($file->file_format == 'vid')
           <div class="col-lg-4 about-img">
               <div style="text-align: center">

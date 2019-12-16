@@ -480,11 +480,23 @@ a.button-style {
 #slide3:checked ~ .images .images-inner {
     margin-left: -200%;
 }
+#slide4:checked ~ .images .images-inner {
+    margin-left: -300%;
+}
+#slide5:checked ~ .images .images-inner {
+    margin-left: -400%;
+}
+#slide6:checked ~ .images .images-inner {
+    margin-left: -500%;
+}
 
 /* Color of bullets */
 #slide1:checked ~ div .fake-radio .radio-btn:nth-child(1),
 #slide2:checked ~ div .fake-radio .radio-btn:nth-child(2),
-#slide3:checked ~ div .fake-radio .radio-btn:nth-child(3) {
+#slide3:checked ~ div .fake-radio .radio-btn:nth-child(3),
+#slide4:checked ~ div .fake-radio .radio-btn:nth-child(4),
+#slide5:checked ~ div .fake-radio .radio-btn:nth-child(5),
+#slide6:checked ~ div .fake-radio .radio-btn:nth-child(6) {
     background: #0390d6;
 }
 
@@ -507,7 +519,10 @@ a.button-style {
 /* Text of slides */
 #slide1:checked ~ .labels .label:nth-child(1),
 #slide2:checked ~ .labels .label:nth-child(2),
-#slide3:checked ~ .labels .label:nth-child(3) {
+#slide3:checked ~ .labels .label:nth-child(3),
+#slide4:checked ~ .labels .label:nth-child(4),
+#slide5:checked ~ .labels .label:nth-child(5),
+#slide6:checked ~ .labels .label:nth-child(6) {
     opacity: 1;
 }
 
@@ -544,24 +559,48 @@ a.button-style {
     animation: bullet 12300ms infinite 7200ms;
 }
 
+#play1:checked ~ div .fake-radio .radio-btn:nth-child(4) {
+    animation: bullet 12300ms infinite 10000ms;
+}
+
+#play1:checked ~ div .fake-radio .radio-btn:nth-child(5) {
+    animation: bullet 12300ms infinite 15000ms;
+}
+
+#play1:checked ~ div .fake-radio .radio-btn:nth-child(6) {
+    animation: bullet 12300ms infinite 170000ms;
+}
+
 /* Calculate AUTOPLAY for BULLETS - END */
 
 /* Calculate AUTOPLAY for SLIDES */
 @keyframes slide {
 
     0%,
-    25.203252032520325% {
+    10.6667% {
         margin-left: 0;
     }
 
-    33.333333333333336%,
-    58.53658536585366% {
+   18.6667%,
+    28.334% {
         margin-left: -100%;
     }
 
-    66.66666666666667%,
-    91.869918699187% {
+    36.334%,
+    46.001% {
         margin-left: -200%;
+    }
+    54.001%,
+    64.668% {
+        margin-left: -300%;
+    }
+    72.66666666666667%,
+    82.869918699187% {
+        margin-left: -400%;
+    }
+    90.66666666666667%,
+    100% {
+        margin-left: -500%;
     }
 }
 
@@ -573,35 +612,15 @@ a.button-style {
 /* //banner slider */
 
 /* background images for banner */
-.banner-w3pvt-1 {
-    background: url(../images/banner1.jpg) no-repeat top;
+.banner-w3pvt{
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
-    min-height: 800px;
+    height: 800px;
 }
 
-.banner-w3pvt-2 {
-    background: url(../images/banner2.jpg) no-repeat center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    min-height: 800px;
-}
-
-.banner-w3pvt-3 {
-    background: url(../images/banner3.jpg) no-repeat center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    min-height: 800px;
-}
 
 .overlay-wthree {
     background: rgba(0, 0, 0, 0.41);
