@@ -6,6 +6,11 @@
             <div class="row">
                 <div class="col-md-8" style="margin:10px 0">
                     <h3>Categories</h3>
+                    <pre>
+                        @php
+                            print_r($permissions)
+                        @endphp
+                    </pre>
                 </div>
                 @if (in_array('create-categories', $permissions))
                     <div class="col-md-4" style="margin:10px 0">

@@ -3,7 +3,7 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            <h3>Permission Role : {{ Auth::user()->full_name }}</h3>
+            <h3>Permission Role : {{ $role->role_name }}</h3>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     <form action="{{ route('permission_role.store') }}" method="post">
                         @csrf
-                        <input type="hidden" name="role_id" value="{{ $role_id }}">
+                        <input type="hidden" name="role_id" value="{{ $role->id }}">
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="table table-striped">

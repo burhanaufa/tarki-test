@@ -27,7 +27,7 @@ class PermissionRoleController extends Controller
             $permission_id[] = $permission_role->id;
         }
 
-        return view('permission_role.create')->with('role_id', $role_id)->with('permission_id', $permission_id)
+        return view('permission_role.create')->withRole($role)->with('permission_id', $permission_id)
                                             ->withPermissions($permissions);
     }
 
