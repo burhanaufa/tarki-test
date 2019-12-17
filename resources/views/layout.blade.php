@@ -44,16 +44,16 @@
                 <!-- nav -->
                 <nav class="lavi-wthree">
                     <div id="logo">
-                        <h4> <a class="navbar-brand" href="index.html">Tarakanita</a>
+                        <h4> <a class="navbar-brand" href="{{route('/')}}">Tarakanita</a>
                         </h4>
                     </div>
-
+                    <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop" />
                     <ul class="menu mr-auto">
                         <?php $i = 0; $j=0; ?>
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="{{route('/')}}">Home</a></li>
                         @if($top_menu_parent != null)
                         @foreach($top_menu_parent as $item)
-                        {{-- <li><a href="about.html"></a></li> --}}
                         @foreach ($sub_menu_parent as $item2)
                             @if($item->id == $item2->parent)
                             <?php $i = 1; break;?>
@@ -61,9 +61,9 @@
                         @endforeach
                         @if($i == 1)
                         <li>
-
+                            <label for="drop-{{$j}}" class="toggle">{{$item->category_name}} <span class="fa fa-angle-down" aria-hidden="true"></span> </label>
                             <a href="#">{{$item->category_name}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-
+                            <input type="checkbox" id="drop-{{$j}}" />
                             <ul>
                                 @foreach ($sub_menu_parent as $item2)
                                 @if($item->id == $item2->parent)
@@ -189,6 +189,9 @@
 
 
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
