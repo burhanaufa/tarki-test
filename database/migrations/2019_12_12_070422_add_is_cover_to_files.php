@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeForeignKeyRegionIdOnLogUsers extends Migration
+class AddIsCoverToFiles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class ChangeForeignKeyRegionIdOnLogUsers extends Migration
      */
     public function up()
     {
-        Schema::table('log_users', function (Blueprint $table) {
-            $table->dropForeign('log_users_region_id_foreign');
-
-            $table->foreign('region_id')->references('id')->on('regions')->onDelete('SET NULL');
+        Schema::table('files', function (Blueprint $table) {
+            $table->enum('is_cover', ['0', '1'])->nullable()->after('file_format')->comment('0=no, 1=yes');
         });
     }
 
@@ -27,8 +25,8 @@ class ChangeForeignKeyRegionIdOnLogUsers extends Migration
      */
     public function down()
     {
-        Schema::table('log_users', function (Blueprint $table) {
-            //
+        Schema::table('files', function (Blueprint $table) {
+            $table->dropColumn('is_cover');
         });
     }
 }

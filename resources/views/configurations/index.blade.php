@@ -31,9 +31,11 @@
                             @endif
                             <td>{{ date('d M Y H:i:s', strtotime($configuration->created_at)) }}</td>
                             <td>
-                                <a href="{{ url("dashboard/configurations/$configuration->id/edit") }}" class="btn btn-sm btn-success">
-                                    <i class="fa fa-edit"></i> Edit
-                                </a>
+                                @if (in_array('update-configurations', $permissions))
+                                    <a href="{{ url("dashboard/configurations/$configuration->id/edit") }}" class="btn btn-sm btn-success">
+                                        <i class="fa fa-edit"></i> Edit
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                         @php $i++; @endphp

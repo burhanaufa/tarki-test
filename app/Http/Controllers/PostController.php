@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\File;
@@ -25,7 +26,15 @@ class PostController extends Controller
     {
         $posts = Post::paginate(15);
 
-        return view('posts.index')->withPosts($posts);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('posts.index')->withPosts($posts)->withPermissions($permissions);
     }
 
     /**
@@ -65,6 +74,7 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
             $post->headline = $request->headline;
             $post->description = $request->description;
+            $post->slug = Str::slug($request->title);
             $post->created_by = Auth::user()->id;
             $post->save();
 
@@ -73,7 +83,7 @@ class PostController extends Controller
             {
                 $ext = $file->getClientOriginalExtension();
                 $code = base64_encode($file_idx. '' .date('Y-m-d H:i:s'));
-                $name = substr($code. '' .$file->getClientOriginalName(), -50, 50);
+                $name = str_replace(' ', '-', strtolower(substr($code. '' .$file->getClientOriginalName(), -50, 50)));
                 $file->move(public_path().'/images/posts/', $name);
 
                 $new_file = new File;
@@ -164,6 +174,7 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
             $post->headline = $request->headline;
             $post->description = $request->description;
+            $post->slug = Str::slug($request->title);
             $post->created_by = Auth::user()->id;
             $post->save();
 
@@ -173,7 +184,7 @@ class PostController extends Controller
                 {
                     $ext = $file->getClientOriginalExtension();
                     $code = base64_encode($file_idx. '' .date('Y-m-d H:i:s'));
-                    $name = substr($code. '' .$file->getClientOriginalName(), -50, 50);
+                    $name = str_replace(' ', '-', strtolower(substr($code. '' .$file->getClientOriginalName(), -50, 50)));
                     $file->move(public_path().'/images/posts/', $name);
 
                     $new_file = new File;

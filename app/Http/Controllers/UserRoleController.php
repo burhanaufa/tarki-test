@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\LogUser;
+use App\Region;
 use App\User;
 use App\Role;
 
@@ -23,11 +24,13 @@ class UserRoleController extends Controller
         $user = User::find($user_id);
         $user_roles = $user->roles;
 
+        $regions = Region::all();
+
         foreach ($user_roles as $user_role) {
             $role_id[] = $user_role->id;
         }
 
-        return view('user_role.create')->with('user_id', $user_id)
+        return view('user_role.create')->with('user_id', $user_id)->withRegions($regions)
                                         ->with('role_id', $role_id)->withRoles($roles);
     }
 
@@ -41,9 +44,14 @@ class UserRoleController extends Controller
         $user_name = Auth::user()->username;
 
         $roles = array();
+        $region_id = NULL;
+        if ($request->has('region_id')) {
+            $region_id = $request->region_id;
+        }
 
         foreach ($request->roles as $role) {
             $roles[$role]['created_by'] = Auth::user()->id;
+            $roles[$role]['region_id'] = $region_id;
         }
 
         $user = User::find($request->user_id);
