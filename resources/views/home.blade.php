@@ -1,35 +1,53 @@
 @extends('layout')
 @section('content')
-<div id="homepage-slider" class="st-slider">
-    <input type="radio" class="cs_anchor radio" name="slider" id="play1" checked="" />
-    <?php $i = 1; ?>
+
+   <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <?php $i = 0; ?>
     @foreach($sliders as $slide)
-    <input type="radio" class="cs_anchor radio" name="slider" id="slide{{$i}}" />
+    @if($i == 0)
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    @else
+    <li data-target="#demo" data-slide-to="{{$i}}"></li>
+    @endif
     <?php $i++; ?>
     @endforeach
-    <div class="images">
-        <div class="images-inner">
-             <?php $j = 1; ?>
-            @foreach($sliders as $slide)
-            <div class="image-slide">
-                <div class="banner-w3pvt" style="background: url({{ '../../images/posts/' .$slide->file_name }}) no-repeat;background-size: cover;height: 750px;">
+  </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <?php $i = 0; ?>
+    @foreach($sliders as $slide)
+    @if($i == 0)
+    <div class="carousel-item active">
+      <div class="banner-w3pvt" style="background: url({{ '../../images/posts/' .$slide->file_name }}) no-repeat;background-size: cover;height: 750px;">
                     <div class="overlay-wthree"></div>
 
                 </div>
-            </div>
-            <?php $j++; ?>
-            @endforeach
-        </div>
     </div>
-    <div class="labels">
-        <div class="fake-radio">
-            <?php $k = 1; ?>
-            @foreach($sliders as $slide)
-            <!-- <label for="slide{{$k}}" class="radio-btn"></label> -->
-            <?php $k++; ?>
-            @endforeach
-        </div>
+    @else
+    <div class="carousel-item">
+      <div class="banner-w3pvt" style="background: url({{ '../../images/posts/' .$slide->file_name }}) no-repeat;background-size: cover;height: 750px;">
+                    <div class="overlay-wthree"></div>
+
+                </div>
     </div>
+    @endif
+    <?php $i++; ?>
+    @endforeach
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
     <!-- banner-w3ls-info -->
             <!--
             <div class="banner-w3ls-info">
@@ -54,7 +72,6 @@
             </div>
         -->
         <!-- //banner-w3ls-info -->
-    </div>
     <section class="about py-5">
         <div class="container py-md-5">
             <div class="about-w3ls-info text-center mx-auto">
@@ -93,7 +110,7 @@
                         <div class="col-sm-4 service-1-w3ls serve-gd2">
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}}</p>
                                 </a>
                             </div>
@@ -101,7 +118,7 @@
                              @if($i / 2 == 1)
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}} </p>
                                 </a>
                             </div>
@@ -111,7 +128,7 @@
                         <div class="col-sm-4 service-1-w3ls serve-gd3">
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}}</p>
                             </a>
                             </div>
@@ -120,7 +137,7 @@
                              @if($i / 4 == 1)
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="text-li mt-2">{{$region->region_name}} </p>
                             </a>
                             </div>
@@ -128,7 +145,7 @@
                              @if($i / 5 == 1)
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}} </p>
                             </a>
                             </div>
@@ -139,7 +156,7 @@
                         <div class="col-sm-4 service-1-w3ls serve-gd2">
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}} </p>
                             </a>
                             </div>
@@ -147,7 +164,7 @@
                              @if($i / 7 == 1)
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/posts/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}}</p>
                             </a>
                             </div>
@@ -255,67 +272,18 @@
             @endforeach
         </div>
 
-
-        <!-- gallery popups -->
-        <!-- popup-->
-        <div id="gal1" class="pop-overlay animate">
+        <?php $i = 1; ?>
+        @foreach($galleries as $gallery)
+        <div id="gal{{$i}}" class="pop-overlay animate">
             <div class="popup">
-                <img src="{{ asset('assets/images/g1.jpg')}}" alt="Popup Image" class="img-fluid" />
-                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat
-                dolor.</p>
+                <h3>{{$gallery->title}}</h3>
+                <img src="{{ asset('/images/posts/'.$gallery->file_name)}}" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">{{$gallery->headline}}</p>
                 <a class="close" href="#gallery">&times;</a>
             </div>
         </div>
-        <!-- //popup -->
-        <!-- popup-->
-        <div id="gal2" class="pop-overlay animate">
-            <div class="popup">
-                <img src="{{ asset('assets/images/g2.jpg')}}" alt="Popup Image" class="img-fluid" />
-                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat
-                dolor.</p>
-                <a class="close" href="#gallery">&times;</a>
-            </div>
-        </div>
-        <!-- //popup -->
-        <!-- popup-->
-        <div id="gal3" class="pop-overlay animate">
-            <div class="popup">
-                <img src="{{ asset('assets/images/g3.jpg')}}" alt="Popup Image" class="img-fluid" />
-                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat
-                dolor.</p>
-                <a class="close" href="#gallery">&times;</a>
-            </div>
-        </div>
-        <!-- //popup3 -->
-        <!-- popup-->
-        <div id="gal4" class="pop-overlay animate">
-            <div class="popup">
-                <img src="{{ asset('assets/images/g4.jpg')}}" alt="Popup Image" class="img-fluid" />
-                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat
-                dolor.</p>
-                <a class="close" href="#gallery">&times;</a>
-            </div>
-        </div>
-        <!-- //popup -->
-        <!-- popup-->
-        <div id="gal5" class="pop-overlay animate">
-            <div class="popup">
-                <img src="{{ asset('assets/images/g5.jpg')}}" alt="Popup Image" class="img-fluid" />
-                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat
-                dolor.</p>
-                <a class="close" href="#gallery">&times;</a>
-            </div>
-        </div>
-        <!-- //popup -->
-        <!-- popup-->
-        <div id="gal6" class="pop-overlay animate">
-            <div class="popup">
-                <img src="{{ asset('assets/images/g6.jpg')}}" alt="Popup Image" class="img-fluid" />
-                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat
-                dolor.</p>
-                <a class="close" href="#gallery">&times;</a>
-            </div>
-        </div>
+        <?php $i++; ?>
+        @endforeach
         <!-- //popup -->
         <!-- //gallery popups -->
     </div>
