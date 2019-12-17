@@ -24,7 +24,15 @@ class CategoryController extends Controller
     {
         $categories = Category::paginate(15);
 
-        return view('categories.index')->withCategories($categories);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('categories.index')->withCategories($categories)->withPermissions($permissions);
     }
 
     /**
@@ -80,7 +88,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image_name = $request->name. '.' .$image->getClientOriginalExtension();
+            $image_name = str_replace(' ', '-', strtolower($request->name. '.' .$image->getClientOriginalExtension()));
             $category->image = $image_name;
             $destination = 'images/categories';
             $image->move($destination, $image_name);
@@ -145,7 +153,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image_name = $request->name. '.' .$image->getClientOriginalExtension();
+            $image_name = str_replace(' ', '-', strtolower($request->name. '.' .$image->getClientOriginalExtension()));
 
             $category->image = $image_name;
         }

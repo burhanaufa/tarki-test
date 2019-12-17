@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\LogUser;
 use App\File;
@@ -49,10 +50,12 @@ class FileController extends Controller
 
         $user_name = Auth::user()->username;
 
+        $file_idx = 0;
         foreach($request->file('filename') as $file)
         {
             $ext = strtolower($file->getClientOriginalExtension());
-            $name = substr($file->getClientOriginalName(), -50, 50);
+            $code = base64_encode($file_idx. '' .date('Y-m-d H:i:s'));
+            $name = str_replace(' ', '-', strtolower(substr($code. '' .$file->getClientOriginalName(), -50, 50)));
             $file->move(public_path().'/images/posts/', $name);
 
             $new_file = new File;
@@ -74,6 +77,8 @@ class FileController extends Controller
 
             $new_file->created_by = Auth::user()->id;
             $new_file->save();
+
+            $file_idx++;
         }
 
         $log_user = new LogUser;
@@ -97,30 +102,47 @@ class FileController extends Controller
     {
         $files = File::where('post_id', $post_id)->paginate(15);
 
-        return view('files.show')->withFiles($files)->with('post_id', $post_id);
+        $permissions = array();
+        $roles = Auth::user()->roles;
+        foreach ($roles as $key => $val) {
+            foreach ($val->permissions as $permission) {
+                $permissions[$permission->id] = $permission->name;
+            }
+        }
+
+        return view('files.show')->withFiles($files)->with('post_id', $post_id)->withPermissions($permissions);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->has('set_is_cover')) {
+            if ($request->has('is_cover')) {
+                $files = File::where('post_id', $id)->get();
+
+                if ($files->count() > 0) {
+                    foreach ($files as $file) {
+                        $file->is_cover = '0';
+                        $file->save();
+                    }
+                }
+
+                $file = File::find($request->is_cover);
+                $file->is_cover = '1';
+                $file->save();
+
+                return redirect()->route('files.show', $id);
+            }
+        }
+
+        if ($request->has('delete')) {
+            if ($request->has('deletes')) {
+                foreach ($request->deletes as $file_id) {
+                    $file = File::find($file_id);
+                    $file->delete();
+                }
+                return redirect()->route('files.show', $id);
+            }
+        }
     }
 
     /**

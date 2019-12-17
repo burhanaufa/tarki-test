@@ -10,4 +10,14 @@ class Role extends Model
     {
         return $this->belongsToMany('App\User');
     }
+
+    public function permissions()
+    {
+        return $this->belongsToMany('App\Permission');
+    }
+
+    // public function hasPermission($permission) : bool
+    // {
+    //     return (bool) $this->permissions()->where('permissions.name', $permission)->first();
+    // }
 }
