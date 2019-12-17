@@ -110,7 +110,7 @@
                         <div class="col-sm-4 service-1-w3ls serve-gd2">
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icons/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}}</p>
                                 </a>
                             </div>
@@ -118,7 +118,7 @@
                              @if($i / 2 == 1)
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icons/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}} </p>
                                 </a>
                             </div>
@@ -128,7 +128,7 @@
                         <div class="col-sm-4 service-1-w3ls serve-gd3">
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icons/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}}</p>
                             </a>
                             </div>
@@ -137,7 +137,7 @@
                              @if($i / 4 == 1)
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icons/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="text-li mt-2">{{$region->region_name}} </p>
                             </a>
                             </div>
@@ -145,7 +145,7 @@
                              @if($i / 5 == 1)
                             <div class="serve-grid mt-4">
                                 <a href="http://{{$region->url}}">
-                                <span><img src="{{ asset('/images/icon/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
+                                <span><img src="{{ asset('/images/icons/'.$region->icon)}}" style="width:100px;margin-top:30px"></span>
                                 <p class="mt-2">{{$region->region_name}} </p>
                             </a>
                             </div>
