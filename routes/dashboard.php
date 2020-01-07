@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('home');
@@ -7,6 +10,7 @@ Route::get('/dashboard', 'DashboardController@index')->name('home');
 Route::prefix('dashboard')->group(function () {
     Route::resource('categories', 'CategoryController');
     Route::resource('posts', 'PostController');
+    // Route::resource('approval/post', 'ApprovalController');
 
     Route::resource('files', 'FileController')->except([
         'index', 'create', 'destroy', 'edit', 'update'
@@ -21,14 +25,19 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/comments/{id}/destroy', 'CommentController@destroy')->name('comments.destroy');
 
     Route::get('/errors/unauthorized', 'ErrorController@unauthorized')->name('errors.unauthorized');
+
+    /*============ Approval ===============*/
+    Route::get('/approval/{what}', 'ApprovalController@index')->name('approval.post.index');
+    Route::post('/approval/post/{id}/update', 'ApprovalController@update')->name('approval.post.update');
+
+    Route::get('/approval/{what}', 'ApprovalController@index')->name('approval.comment.index');
+    Route::post('/approval/comment/{id}/update', 'ApprovalController@update')->name('approval.comment.update');
 });
 
 Route::group(['middleware' => ['auth', 'role:1'], 'prefix' => 'dashboard'], function () {
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
     Route::resource('regions', 'RegionController');
-
-
 
     Route::resource('configurations', 'ConfigurationController')->except([
         'store', 'create', 'destroy'

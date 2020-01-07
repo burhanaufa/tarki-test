@@ -9,6 +9,7 @@
 
   <section class="py-sm-12 container">
     <h3 class="title-wthree my-3">{{$page->category_name}}</h3>
+
     <hr>
     @foreach($posts as $post)
       <div class="py-sm-12" style="margin-bottom:40px;padding-top: 30px;padding-left: 5px;padding-right: 5px">

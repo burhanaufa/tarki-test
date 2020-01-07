@@ -52,7 +52,7 @@
                         <label for="image">Upload Image</label>
                         <input type="file" name="image" id="image" class="form-control">
                         @if (!empty($category->image))
-                            <img src="{{ env('APP_URL'). '/images/categories/' .$category->image }}" alt="">
+                            <img width="150" height="100" src="{{ '/images/categories/' .$category->image }}" alt="">
                         @endif
                         <button type="submit" class="btn btn-primary btn-block" style="margin:10px 0">Submit</button>
                     </form>

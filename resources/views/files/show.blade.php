@@ -40,7 +40,7 @@
                                     <td>{{ $i }}</td>
                                     <td>
                                         @if ($file->file_format == 'img')
-                                            <img width="65" height="65" src="{{ env('APP_URL'). '/images/posts/' .$file->file_name }}" alt="">
+                                            <img width="65" height="65" src="{{ '/images/posts/' .$file->file_name }}" alt="">
                                         @else
                                             {{ $file->file_name }}
                                         @endif

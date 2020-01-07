@@ -32,7 +32,7 @@
                                     <td>-</td>
                                 @else
                                     <td>
-                                        <img width="65" height="65" src="{{ env('APP_URL'). '/images/categories/' .$category->image }}" alt="">
+                                        <img width="65" height="65" src="{{ '/images/categories/' .$category->image }}" alt="">
                                     </td>
                                 @endif
                                 <td>{{ date('d M Y H:i:s', strtotime($category->created_at)) }}</td>

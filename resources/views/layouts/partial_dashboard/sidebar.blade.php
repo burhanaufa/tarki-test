@@ -75,13 +75,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="pages/charts/flot.html" class="nav-link">
+                     <a href="{{url('dashboard/approval', 'post') }}" class="nav-link {{ Request::is('*approval*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Posts</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/charts/inline.html" class="nav-link">
+                    <a href="{{url('dashboard/approval', 'comment') }}" class="nav-link {{ Request::is('*approval*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Comments</p>
                     </a>
